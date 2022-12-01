@@ -1,18 +1,22 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:marketplace/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:marketplace/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:ui_style/ui_style.dart';
 
-class SummaryCheckoutWidget extends StatefulWidget {
-  @override
-  State<SummaryCheckoutWidget> createState() => _SummaryCheckoutWidgetState();
-}
+class SummaryCheckoutWidget extends StatelessWidget {
+  const SummaryCheckoutWidget({
+    Key? key,
+    required this.cartData,
+  }) : super(key: key);
 
-class _SummaryCheckoutWidgetState extends State<SummaryCheckoutWidget> {
-  // const SummaryCheckoutWidget({
-  bool isChecked = false;
+  final CartCheckoutEntity cartData;
+  final bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
+    List<CartItemCheckoutEntity>? cartsItem = cartData.cartsItems;
     return Padding(
       padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
       child: Container(
@@ -20,8 +24,8 @@ class _SummaryCheckoutWidgetState extends State<SummaryCheckoutWidget> {
           //     EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.0001),
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: Color(0xFFF5F5F5)),
-            color: Color(0xFFF5F5F5),
+            border: Border.all(color: BaseColors.lightestGrey),
+            color: BaseColors.lightestGrey,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Column(
@@ -32,38 +36,41 @@ class _SummaryCheckoutWidgetState extends State<SummaryCheckoutWidget> {
                   Text(
                     "Today's changes",
                     style: TextStyle(
-                      fontSize: 20  ,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Text('iphone 12 Pro Max'),
-                  Text(
-                    '฿ 36,000',
-                    style: TextStyle(fontWeight: FontWeight.w700),
-                  )
-                ],
-              ),
-              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
-              Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Text(
-                    '1 x @36,000',
-                    style: TextStyle(color: Color.fromARGB(255, 197, 197, 197)),
-                  )
-                ],
-              ),
+              for (var cartItem in cartData.cartsItems!)
+                Container(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('${cartItem.productName}'),
+                          Text(
+                            '฿ ${cartItem.productPrice}',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            '${cartItem.quantity} x @${cartItem.productPrice}',
+                            style: TextStyle(color: BaseColors.greyTextColor),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
@@ -71,12 +78,16 @@ class _SummaryCheckoutWidgetState extends State<SummaryCheckoutWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
-                  Text('Standard shipping'),
+                  Text('Standard shipping',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                    ),),
                   Text(
                     'Free',
                     style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18  ,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
                     ),
                   ),
                 ],
@@ -104,16 +115,16 @@ class _SummaryCheckoutWidgetState extends State<SummaryCheckoutWidget> {
                   Text(
                     'Total Amount',
                     style: TextStyle(
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
                   Text(
-                    '฿ 36,000',
+                    '฿ ${cartData.totalIncTax}',
                     style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18  ,
-                      color: Color(0xFF73C23A),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: BaseColors.primaryColor,
                     ),
                   ),
                 ],
@@ -129,23 +140,23 @@ class _SummaryCheckoutWidgetState extends State<SummaryCheckoutWidget> {
                     width: MediaQuery.of(context).size.width * 0.10,
                     child: Checkbox(
                       checkColor: Colors.white,
-                      activeColor: Color(0xFF73C23A),
+                      activeColor: BaseColors.primaryColor,
                       value: isChecked,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(2),
                       ),
                       onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
+                        // setState(() {
+                        // isChecked = value!;
+                        // });
                       },
                     ),
                   ),
                   Text(
                     'By checking out I agree to the ',
                     style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 24  ,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
                     ),
                   ),
                 ],
@@ -163,14 +174,14 @@ class _SummaryCheckoutWidgetState extends State<SummaryCheckoutWidget> {
                       'Terms and conditions',
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
-                          fontSize: 24  ,
-                          color: Color(0xFF73C23A),
+                          fontSize: 24,
+                          color: BaseColors.primaryColor,
                           decoration: TextDecoration.underline),
                     ),
                     onPressed: () {
                       print('--click link page term and condition');
                       // Navigator.pushNamed(context, '/termcondition');
-                      Navigator.pushNamed(context, '/termcondition');
+                      Navigator.pushNamed(context, 'terms-conditions');
                     },
                   )
                 ],
@@ -179,29 +190,20 @@ class _SummaryCheckoutWidgetState extends State<SummaryCheckoutWidget> {
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Place order',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24  ,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.height * 0.03,
-                            bottom: MediaQuery.of(context).size.height * 0.03,
-                          ),
-                          backgroundColor: Color(0xFF73C23A),
-                          shape: StadiumBorder()),
+                    child: UiButton(
+                      title: "Place order",
+                      fontSize: 24,
+                      buttonType: ButtonType.primaryBtn,
+                      onPress: () {
+                        Navigator.pushNamed(context, '/preview');
+                      },
+                      height: MediaQuery.of(context).size.height * 0.07,
                     ),
                   ),
                 ],
-              ),
+              )
             ],
           )),
     );

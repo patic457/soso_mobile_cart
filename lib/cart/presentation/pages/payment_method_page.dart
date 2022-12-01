@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:soso_mobile_cart/cart/presentation/bloc/list_payment_method/list_payment_method_bloc.dart';
-import 'package:soso_mobile_cart/cart/presentation/widgets/payment_list_item.dart';
+import 'package:marketplace/cart/presentation/bloc/list_payment_method/list_payment_method_bloc.dart';
+import 'package:marketplace/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+import 'package:marketplace/cart/presentation/pages/payment_method_sub_page.dart';
+import 'package:marketplace/cart/presentation/widgets/payment_list_item.dart';
 
 class PaymentMethodListPage extends StatelessWidget {
   const PaymentMethodListPage({super.key});
@@ -44,22 +48,37 @@ class PaymentMethodListPage extends StatelessWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: state.paymentMethods.length,
-                      itemBuilder: (context, index) {
+                      itemBuilder: (BuildContext context, int index) {
                         final paymentMethod = state.paymentMethods[index];
                         return Padding(
                           padding: const EdgeInsets.only(
-                            left: 8,
-                            right: 8,
+                            left: 18,
+                            right: 18,
                           ),
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(1),
                                 child: Column(
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        debugPrint('Clicked');
+                                        //debugPrint('Clicked');
+                                        context
+                                            .read<SelectPaymentMethodBloc>()
+                                            .add(OnSelectPaymentMethodEvent(
+                                                paymentMethodEntity:
+                                                    paymentMethod));
+                                        if (paymentMethod.bankOptions != null) {
+                                          if (paymentMethod
+                                              .bankOptions!.isNotEmpty) {
+                                            Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PaymentMethodSubPage(),
+                                            ));
+                                          }
+                                        }
                                       },
                                       child: PaymentMethodListItem(
                                           paymentMethod: paymentMethod),

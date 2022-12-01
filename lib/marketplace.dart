@@ -1,7 +1,4 @@
-library marketplace;
-
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:marketplace/cart/cart.dart';
+export 'router.dart';
+export 'utils/utils.dart';
+export 'injection.dart';

@@ -1,4 +1,4 @@
-import 'package:soso_mobile_cart/cart/core/util.dart';
+import 'package:marketplace/cart/core/util.dart';
 
 class Urls {
   static const String listPaymentMethodUrl =
@@ -8,6 +8,26 @@ class Urls {
     "Ocp-Apim-Subscription-Key": "886d6c25db8b445992b23cc6fa669a3a",
     "X-Sgl-Id":
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6InlvelRkc3pITTNWIiwiZmlyc3RuYW1lIjoiQXBwcm92ZXJzcyIsImxhc3RuYW1lIjoiVGVzdGVyIiwidXNlcm5hbWUiOiJzZ2x0ZXN0MTZAY29ycC5haXM5MDBkZXYub3JnIiwiYWNjb3VudENhdGVnb3J5IjoicmVzaWRlbnRpYWwiLCJpYWwiOiIxLjEiLCJyb2xlcyI6WyJjYXJ0LW1hbmFnZW1lbnQiLCJjYW5jZWwtb3JkZXIiLCJ2aWV3LXB1cmNoYXNlLW9yZGVyIiwicmVjZWl2ZS1vcmRlciIsInVwZGF0ZS1vcmRlciIsInZpZXctdGlja2V0IiwiY3JlYXRlLXRpY2tldCIsInVwZGF0ZS10aWNrZXQiLCJjYW5jZWwtdGlja2V0IiwiYmFjay1vZmZpY2UtYWRtaW4iLCJwcm9kdWN0LW1hbmFnZSIsInByb2R1Y3QtY3JlYXRvciIsInByb2R1Y3QtYWRtaW4iLCJwcm9kdWN0LW1vZGlmeSIsInByb2R1Y3QtZGVsZXRlIiwiaW52ZW50b3J5LWNyZWF0b3IiLCJpbnZlbnRvcnktbW9kaWZ5IiwiaW52ZW50b3J5LWRlbGV0ZSIsImludmVudG9yeS1hZG1pbiIsImludmVudG9yeS1zYWxlLXByaWNlIiwiaW52ZW50b3J5LWRlYWxlci1wcmljZSIsInJlc291cmNlLWNyZWF0b3IiLCJyZXNvdXJjZS1tb2RpZnkiLCJyZXNvdXJjZS1kZWxldGUiLCJyZXNvdXJjZS1hZG1pbiIsInByb2R1Y3QtZGVhbGVyLXByaWNlIiwicHJvZHVjdC1zYWxlLXByaWNlIiwicHJvZHVjdC1zcGVjaWFsLWdyb3VwIiwibWVyY2hhbnQtbWFuYWdlIiwibWVyY2hhbnQtYWRtaW4iLCJtZXJjaGFudC1jcmVhdG9yIiwibWVyY2hhbnQtbW9kaWZ5IiwibWVyY2hhbnQtZGVsZXRlIiwidmlldy1tZW1iZXItYWxsIiwidmlldy1vcmRlci1hbGwiLCJwdXJjaGFzZS1hcHByb3ZhbCIsInZpZXctcmVmdW5kLW9yZGVyIiwidXBkYXRlLXJlZnVuZCJdLCJ2ZXJzaW9uIjoiMS4yIiwiaWF0IjoxNjY1NDc4MTA3fQ.BMsuPw4OF_GDOMFvVL5bKxts2W0V1TRhLCvtbsrn2mU",
+    "X-Transaction-id": generateRandomString(12),
+  };
+
+  static const String addressesUrl =
+      'https://mfaf-dev.adldigitalservice.com/sgl/api/v1/address-management';
+  static Map<String, String> getDeliveryAddressesRequiredHeader = {
+    "Origin": "https://mfaf-dev.adldigitalservice.com",
+    "Ocp-Apim-Subscription-Key": "886d6c25db8b445992b23cc6fa669a3a",
+    "X-Sgl-Id":
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6ImY2WVpRMkgyb2cxIiwiZmlyc3RuYW1lIjoiaml0a3QiLCJsYXN0bmFtZSI6IlRpYSIsInVzZXJuYW1lIjoic2dsdGVzdDVAY29ycC5haXM5MDBkZXYub3JnIiwiYWNjb3VudENhdGVnb3J5IjoicmVzaWRlbnRpYWwiLCJpYWwiOiIxLjEiLCJyb2xlcyI6WyJjYXJ0LW1hbmFnZW1lbnQiLCJjYW5jZWwtb3JkZXIiLCJ2aWV3LXB1cmNoYXNlLW9yZGVyIiwicmVjZWl2ZS1vcmRlciIsInVwZGF0ZS1vcmRlciIsInZpZXctdGlja2V0IiwiY3JlYXRlLXRpY2tldCIsInVwZGF0ZS10aWNrZXQiLCJjYW5jZWwtdGlja2V0Il0sImF2YXRhciI6Imh0dHBzOi8vaW90LWFwaXYzLmFpcy5jby50aC9zdGF0aWMvbWVtYmVycy9mNllaUTJIMm9nMS9pbWFnZS9hdmF0YXIuanBlZyIsInZlcnNpb24iOiIxLjIiLCJpYXQiOjE2NjU1NjM1MzN9.CAGp1MFhHgGPw4wGpjhsUP7sg24EIrQAxRnVnpegfWE",
+    "X-Transaction-id": generateRandomString(12),
+  };
+
+  static const String cartUrl =
+      'https://mfaf-dev.adldigitalservice.com/sgl/api/v1/cart-management';
+  static Map<String, String> getCartRequiredHeader = {
+    "Origin": "https://mfaf-dev.adldigitalservice.com",
+    "Ocp-Apim-Subscription-Key": "886d6c25db8b445992b23cc6fa669a3a",
+    "X-Sgl-Id":
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6ImY2WVpRMkgyb2cxIiwiZmlyc3RuYW1lIjoiaml0a3QiLCJsYXN0bmFtZSI6IlRpYSIsInVzZXJuYW1lIjoic2dsdGVzdDVAY29ycC5haXM5MDBkZXYub3JnIiwiYWNjb3VudENhdGVnb3J5IjoicmVzaWRlbnRpYWwiLCJpYWwiOiIxLjEiLCJyb2xlcyI6WyJjYXJ0LW1hbmFnZW1lbnQiLCJjYW5jZWwtb3JkZXIiLCJ2aWV3LXB1cmNoYXNlLW9yZGVyIiwicmVjZWl2ZS1vcmRlciIsInVwZGF0ZS1vcmRlciIsInZpZXctdGlja2V0IiwiY3JlYXRlLXRpY2tldCIsInVwZGF0ZS10aWNrZXQiLCJjYW5jZWwtdGlja2V0Il0sImF2YXRhciI6Imh0dHBzOi8vaW90LWFwaXYzLmFpcy5jby50aC9zdGF0aWMvbWVtYmVycy9mNllaUTJIMm9nMS9pbWFnZS9hdmF0YXIuanBlZyIsInZlcnNpb24iOiIxLjIiLCJpYXQiOjE2NjU1NjM1MzN9.CAGp1MFhHgGPw4wGpjhsUP7sg24EIrQAxRnVnpegfWE",
     "X-Transaction-id": generateRandomString(12),
   };
 }

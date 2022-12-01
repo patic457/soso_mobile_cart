@@ -2,9 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:soso_mobile_cart/cart/core/themes/app_colors.dart';
-import 'package:soso_mobile_cart/cart/data/models/payment_method_model.dart';
-import 'package:soso_mobile_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:marketplace/cart/core/themes/themes.dart';
+import 'package:marketplace/cart/data/models/payment_method_model.dart';
+import 'package:marketplace/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
 
 class PaymentMethodSubPage extends StatelessWidget {
   PaymentMethodSubPage({super.key});
@@ -55,6 +56,14 @@ class PaymentMethodSubPage extends StatelessWidget {
 
                       if (state.selectedPaymentMethodEntity.paymentMethodEntity!
                           .bankOptions![index]!.bankImage!
+                          .contains('.svg')) {
+                        paymentMethodImageWidget = SvgPicture.network(state
+                            .selectedPaymentMethodEntity
+                            .paymentMethodEntity!
+                            .bankOptions![index]!
+                            .bankImage!);
+                      } else if (state.selectedPaymentMethodEntity
+                          .paymentMethodEntity!.bankOptions![index]!.bankImage!
                           .contains('.png')) {
                         paymentMethodImageWidget = Image.network(state
                             .selectedPaymentMethodEntity

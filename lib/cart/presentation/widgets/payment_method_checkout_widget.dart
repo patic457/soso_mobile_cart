@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:ui_style/ui_style.dart';
 
 class PaymentMethodCheckoutWidget extends StatelessWidget {
   const PaymentMethodCheckoutWidget({
@@ -21,7 +22,7 @@ class PaymentMethodCheckoutWidget extends StatelessWidget {
                   'Payment Method',
                   style: TextStyle(
                     fontSize: 28  ,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -57,8 +58,8 @@ class ExitingPaymentmethodWidget extends StatelessWidget {
           EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: Color(0xFFF5F5F5)),
-        color: Color(0xFFF5F5F5),
+        border: Border.all(color: BaseColors.lightestGrey),
+        color: BaseColors.lightestGrey,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -71,14 +72,14 @@ class ExitingPaymentmethodWidget extends StatelessWidget {
                 'Pay by credit / debit card',
                 style: TextStyle(
                   fontSize: 24  ,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               TextButton(
                 child: Text('Change',
                 style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF73C23A),
+                    color: BaseColors.primaryColor,
                     decoration: TextDecoration.underline
                 ),),
                 onPressed: () {},
@@ -107,6 +108,7 @@ class AddPaymentmethodWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         print('----click select payment method----');
+        // Navigator.pushNamed(context, 'payment-method');
       },
       child: Row(
         children: [
@@ -116,8 +118,8 @@ class AddPaymentmethodWidget extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.03),
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFFF5F5F5)),
-                color: Color(0xFFF5F5F5),
+                border: Border.all(color: BaseColors.lightestGrey),
+                color: BaseColors.lightestGrey,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(
@@ -128,7 +130,7 @@ class AddPaymentmethodWidget extends StatelessWidget {
                     'Select payment method',
                     style: TextStyle(
                       fontSize: 24  ,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Icon(Icons.arrow_forward_ios)

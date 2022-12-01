@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:soso_mobile_cart/cart/data/models/payment_method_model.dart';
-import 'package:soso_mobile_cart/cart/domain/entities/payment_method_entity.dart';
-import 'package:soso_mobile_cart/cart/domain/entities/selected_payment_method_entity.dart';
+import 'package:marketplace/cart/data/models/payment_method_model.dart';
+import 'package:marketplace/cart/domain/entities/payment_method_entity.dart';
+import 'package:marketplace/cart/domain/entities/selected_payment_method_entity.dart';
 
 part 'select_payment_method_event.dart';
 part 'select_payment_method_state.dart';

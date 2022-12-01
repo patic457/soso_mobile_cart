@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:soso_mobile_cart/cart/domain/entities/payment_method_entity.dart';
-import 'package:soso_mobile_cart/cart/domain/usecases/get_payment_method.dart';
+import 'package:marketplace/cart/domain/entities/payment_method_entity.dart';
+import 'package:marketplace/cart/domain/usecases/get_payment_method.dart';
 
 part 'list_payment_method_event.dart';
 part 'list_payment_method_state.dart';

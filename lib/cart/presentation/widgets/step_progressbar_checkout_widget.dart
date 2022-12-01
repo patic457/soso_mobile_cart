@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
+import 'package:ui_style/ui_style.dart';
 
 class StepProgressbarCheckoutWidget extends StatelessWidget {
   final _processes = [
@@ -35,11 +36,11 @@ class StepProgressbarCheckoutWidget extends StatelessWidget {
                     child: Text(
                       _processes[index],
                       style: TextStyle(
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.bold,
                           fontSize: 16,
                           color: index <= 1
-                              ? Color(0xFF73C23A)
-                              : Color(0xFF9D9D9D)),
+                              ? BaseColors.primaryColor
+                              : BaseColors.greyColor),
                     ),
                   ),
                 ),
@@ -49,7 +50,7 @@ class StepProgressbarCheckoutWidget extends StatelessWidget {
           indicatorBuilder: (context, index) => OutlinedDotIndicator(
                 position: 0.93,
                 borderWidth: 3,
-                color: index <= 1 ? Color(0xFF73C23A) : Color(0xFFD9D9D9),
+                color: index <= 1 ? BaseColors.primaryColor : BaseColors.greyColor,
                 child: GestureDetector(
                   onTap: () {
                     print('--click progress bar tab: ${index}');
@@ -64,9 +65,9 @@ class StepProgressbarCheckoutWidget extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 24,
                           color: index <= 1
-                              ? Color(0xFF73C23A)
-                              : Color(0xFFD9D9D9),
-                          fontWeight: FontWeight.w700),
+                              ? BaseColors.primaryColor
+                              : BaseColors.greyColor,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -81,7 +82,7 @@ class StepProgressbarCheckoutWidget extends StatelessWidget {
                     borderRadius: BorderRadius.horizontal(
                       right: Radius.circular(64),
                     ),
-                    color: index <= 1 ? Color(0xFF73C23A) : Color(0xFFD9D9D9)),
+                    color: index <= 1 ? BaseColors.primaryColor : BaseColors.greyColor),
               );
             } else {
               return DecoratedLineConnector(
@@ -90,7 +91,7 @@ class StepProgressbarCheckoutWidget extends StatelessWidget {
                     borderRadius: BorderRadius.horizontal(
                       right: Radius.circular(64),
                     ),
-                    color: index <= 1 ? Color(0xFF73C23A) : Color(0xFFD9D9D9)),
+                    color: index <= 1 ? BaseColors.primaryColor : BaseColors.greyColor),
               );
             }
           },
@@ -102,7 +103,7 @@ class StepProgressbarCheckoutWidget extends StatelessWidget {
                     borderRadius: BorderRadius.horizontal(
                       left: Radius.circular(64),
                     ),
-                    color: index < 1 ? Color(0xFF73C23A) : Color(0xFFD9D9D9)),
+                    color: index < 1 ? BaseColors.primaryColor : BaseColors.greyColor),
               );
             } else if (index == _processes.length - 1) {
               return Container();
@@ -113,7 +114,7 @@ class StepProgressbarCheckoutWidget extends StatelessWidget {
                     borderRadius: BorderRadius.horizontal(
                       left: Radius.circular(64),
                     ),
-                    color: index < 1 ? Color(0xFF73C23A) : Color(0xFFD9D9D9)),
+                    color: index < 1 ? BaseColors.primaryColor : BaseColors.greyColor),
               );
             }
           },

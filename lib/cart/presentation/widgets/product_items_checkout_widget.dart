@@ -1,25 +1,34 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:marketplace/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:marketplace/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:ui_style/ui_style.dart';
 
 class ProductItemsCheckoutWidget extends StatelessWidget {
   const ProductItemsCheckoutWidget({
     Key? key,
+    required this.cartData,
   }) : super(key: key);
+
+  final CartCheckoutEntity cartData;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 2,
+      itemCount: cartData.cartsItems?.length,
       physics: ScrollPhysics(),
       shrinkWrap: true,
-      itemBuilder: (context, index) {
+      itemBuilder: (BuildContext context, int index) {
+        final cartItem = cartData.cartsItems?[index];
+        List<OptionValuesEntity>? optionValues = cartData.cartsItems?[index].optionValues;
+
         return Container(
           margin: EdgeInsets.only(top: 5, bottom: 5),
           padding: EdgeInsets.all(3),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Color(0xFFD9D9D9),
+              color: BaseColors.greyColor,
               width: 1.5,
             ),
             borderRadius: BorderRadius.circular(8),
@@ -41,9 +50,10 @@ class ProductItemsCheckoutWidget extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               image: DecorationImage(
-                                image: NetworkImage(
-                                    'https://cdn.shopify.com/s/files/1/0449/3731/4458/products/iphone-12-pro-family-hero_1200x1200.jpg?v=1626565356'),
-                              ),
+                                  image: NetworkImage(
+                                      '${cartItem?.thumbnailImagePath}')
+                                  // 'https://cdn.shopify.com/s/files/1/0449/3731/4458/products/iphone-12-pro-family-hero_1200x1200.jpg?v=1626565356'),
+                                  ),
                             ),
                           ),
                         ],
@@ -53,43 +63,65 @@ class ProductItemsCheckoutWidget extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Column(
-                            // ignore: prefer_const_literals_to_create_immutables
                             children: [
-                              Text(
-                                'Apple iPhone 12 Pro Max',
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                              Table(
+                                columnWidths: const <int, TableColumnWidth>{
+                                  0: FlexColumnWidth(),
+                                },
+                                defaultVerticalAlignment:
+                                    TableCellVerticalAlignment.middle,
+                                children: <TableRow>[
+                                  TableRow(
+                                    children: <Widget>[
+                                      Text('${cartItem?.productName}',
+                                          style: TextStyle(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                          textDirection: TextDirection.ltr),
+                                    ],
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.01,
                               ),
+                              if(optionValues?.length != 0)
                               Table(
-                                columnWidths: const <int, TableColumnWidth>{
-                                  0: FlexColumnWidth(),
-                                  1: FlexColumnWidth(),
-                                },
                                 defaultVerticalAlignment:
                                     TableCellVerticalAlignment.middle,
-                                // ignore: prefer_const_literals_to_create_immutables
                                 children: <TableRow>[
                                   TableRow(
-                                    // ignore: prefer_const_literals_to_create_immutables
-                                    children: <Widget>[
-                                      Text('Color', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
-                                      Text('Size', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),)
+                                    children: [
+                                      for (var optionValueDisplayName
+                                          in optionValues ?? [])
+                                        Text(
+                                            '${optionValueDisplayName.optionDisplayName}',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400)),
                                     ],
                                   ),
                                   TableRow(
-                                    // ignore: prefer_const_literals_to_create_immutables
                                     children: <Widget>[
-                                      Text('Burgundy', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),),
-                                      Text('128 GB', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),)
+                                      for (var optionValueLabel
+                                          in optionValues ?? [])
+                                        Text(
+                                          '${optionValueLabel.label}',
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                     ],
                                   ),
                                 ],
+                              ),
+                              if(optionValues?.length == 0)
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.06,
                               )
                             ],
                           )),
@@ -103,27 +135,32 @@ class ProductItemsCheckoutWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    Text('Quatity'),
-                    Text('Total order'),
+                    Text(
+                      'Quatity',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Text(
+                      'Total order',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     Text(
-                      '1',
+                      '${cartItem?.quantity}',
                       style: TextStyle(
-                          color: Color(0xFF1E3D35),
+                          color: BaseColors.secondaryColor,
                           fontSize: 28,
-                          fontWeight: FontWeight.w700),
+                          fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '฿ 36,000',
+                      '฿ ${cartItem?.productTotalPrice}',
                       style: TextStyle(
-                          color: Color(0xFF1E3D35),
+                          color: BaseColors.secondaryColor,
                           fontSize: 28,
-                          fontWeight: FontWeight.w700),
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -134,7 +171,6 @@ class ProductItemsCheckoutWidget extends StatelessWidget {
             ),
           ),
         );
-        // ),
         // );
       },
     );
