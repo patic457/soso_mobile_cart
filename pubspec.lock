@@ -192,6 +192,13 @@ packages:
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/core.git"
     source: git
     version: "0.0.1"
+  coupon_uikit:
+    dependency: transitive
+    description:
+      name: coupon_uikit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   crypto:
     dependency: transitive
     description:
@@ -240,7 +247,7 @@ packages:
       name: dropdown_button2
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.1"
+    version: "1.9.2"
   encrypt:
     dependency: transitive
     description:
@@ -458,7 +465,7 @@ packages:
     source: hosted
     version: "4.0.2"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -499,6 +506,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  marketplace_member:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "feature/member"
+      resolved-ref: "1f3c4ed5179527c80cd39345b706f0009c89d969"
+      url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/marketplace.git"
+    source: git
+    version: "0.0.1"
   matcher:
     dependency: transitive
     description:
@@ -632,6 +648,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
+  percent_indicator:
+    dependency: transitive
+    description:
+      name: percent_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.2"
   petitparser:
     dependency: transitive
     description:
@@ -660,6 +683,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.6.2"
+  preview:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: developer
+      resolved-ref: "709b5220f876ee8fe0a075faa06f0c3c244cc487"
+      url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/preview_ui.git"
+    source: git
+    version: "0.0.1"
   process:
     dependency: transitive
     description:
@@ -790,7 +822,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0+3"
+    version: "2.2.2"
   sqflite_common:
     dependency: transitive
     description:
@@ -819,6 +851,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  substring_highlight:
+    dependency: transitive
+    description:
+      name: substring_highlight
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.33"
   synchronized:
     dependency: transitive
     description:
@@ -859,7 +898,7 @@ packages:
     description:
       path: "."
       ref: "develop-0.1"
-      resolved-ref: "1ca19f6a59fdd5d30d8fd3230c16d135cd570607"
+      resolved-ref: b1772c79adc04cd45d3a6fa07449afe0e6f4bdea
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/ui_styles.git"
     source: git
     version: "0.0.1"

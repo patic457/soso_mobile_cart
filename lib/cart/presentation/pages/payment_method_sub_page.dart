@@ -3,9 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marketplace/cart/core/themes/themes.dart';
-import 'package:marketplace/cart/data/models/payment_method_model.dart';
-import 'package:marketplace/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+import 'package:marketplace_cart/cart/core/themes/themes.dart';
+import 'package:marketplace_cart/cart/data/models/payment_method_model.dart';
+import 'package:marketplace_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+import 'package:ui_style/ui_style.dart';
 
 class PaymentMethodSubPage extends StatelessWidget {
   PaymentMethodSubPage({super.key});
@@ -16,8 +17,18 @@ class PaymentMethodSubPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Payment'),
+        backgroundColor: BaseColors.secondaryColor,
+        title: const Text(
+          'Payment',
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: BlocBuilder<SelectPaymentMethodBloc, SelectPaymentMethodState>(
         builder: (context, state) {
@@ -39,7 +50,7 @@ class PaymentMethodSubPage extends StatelessWidget {
                               .paymentMethodName
                               .toString(),
                           style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: 28, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -121,8 +132,10 @@ class PaymentMethodSubPage extends StatelessWidget {
                                             child: paymentMethodImageWidget,
                                           ),
                                         ),
-                                        Text(paymentSubMethod!.bankName
-                                            .toString()),
+                                        Text(
+                                          paymentSubMethod!.bankName.toString(),
+                                          style: TextStyle(fontSize: 18),
+                                        ),
                                       ],
                                     )),
                                   ],
@@ -152,13 +165,14 @@ class PaymentMethodSubPage extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               // back to checkout
+                              Navigator.pushNamed(context, '/');
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: const StadiumBorder(),
                                 backgroundColor: AppColors.kLightGreen),
                             child: const Text(
                               'Confirm',
-                              style: TextStyle(fontSize: 17),
+                              style: TextStyle(fontSize: 24),
                             ),
                           ),
                         ),
@@ -183,7 +197,7 @@ class PaymentMethodSubPage extends StatelessWidget {
                             child: const Text(
                               'Cancel',
                               style: TextStyle(
-                                  fontSize: 17, color: AppColors.kLightGreen),
+                                  fontSize: 24, color: AppColors.kLightGreen),
                             ),
                           ),
                         ),

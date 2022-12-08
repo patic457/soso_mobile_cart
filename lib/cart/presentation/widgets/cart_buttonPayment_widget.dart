@@ -1,4 +1,4 @@
-import 'package:marketplace/cart/core/themes/app_fontconfig.dart';
+import 'package:marketplace_cart/cart/core/themes/app_fontconfig.dart';
 import 'package:ui_style/base_color.dart';
 import 'package:flutter/material.dart';
 
@@ -14,15 +14,17 @@ class _CartButtonPaymentWidget extends State<CartButtonPaymentWidget> {
   Widget build(BuildContext context) {
     void onPressedPayment() {
       setState(() {
+        //call Api checkout
         print('Payment');
       });
+      Navigator.of(context).pushNamed('/checkout');
     }
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.07,
-           width: MediaQuery.of(context).size.width * 0.91,
+        width: MediaQuery.of(context).size.width * 0.91,
         child: ElevatedButton(
           onPressed: onPressedPayment,
           style: ButtonStyle(

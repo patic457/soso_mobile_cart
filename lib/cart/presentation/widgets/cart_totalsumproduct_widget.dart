@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:marketplace/cart/core/themes/app_fontconfig.dart';
-import 'package:marketplace/cart/presentation/widgets/cart_buttonPayment_widget.dart';
+import 'package:marketplace_cart/cart/core/themes/app_fontconfig.dart';
+import 'package:marketplace_cart/cart/presentation/widgets/cart_buttonPayment_widget.dart';
 import 'package:ui_style/base_color.dart';
 
 class CartTotalsumproductWidget extends StatelessWidget {

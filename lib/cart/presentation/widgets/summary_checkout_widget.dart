@@ -1,8 +1,12 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:marketplace/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:marketplace_cart/cart/presentation/bloc/handle_checkout/handle_checkout_cubit.dart';
 import 'package:ui_style/ui_style.dart';
 
 class SummaryCheckoutWidget extends StatelessWidget {
@@ -12,16 +16,13 @@ class SummaryCheckoutWidget extends StatelessWidget {
   }) : super(key: key);
 
   final CartCheckoutEntity cartData;
-  final bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
-    List<CartItemCheckoutEntity>? cartsItem = cartData.cartsItems;
+    final formatCurrency = NumberFormat.simpleCurrency(locale: "th_TH");
     return Padding(
       padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
       child: Container(
-          // margin:
-          //     EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.0001),
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
             border: Border.all(color: BaseColors.lightestGrey),
@@ -55,7 +56,7 @@ class SummaryCheckoutWidget extends StatelessWidget {
                         children: [
                           Text('${cartItem.productName}'),
                           Text(
-                            '฿ ${cartItem.productPrice}',
+                            formatCurrency.format(cartItem.productPrice),
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
@@ -78,11 +79,13 @@ class SummaryCheckoutWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
-                  Text('Standard shipping',
-                  style: TextStyle(
+                  Text(
+                    'Standard shipping',
+                    style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 20,
-                    ),),
+                    ),
+                  ),
                   Text(
                     'Free',
                     style: TextStyle(
@@ -120,7 +123,7 @@ class SummaryCheckoutWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '฿ ${cartData.totalIncTax}',
+                    formatCurrency.format(cartData.totalIncTax),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -132,34 +135,42 @@ class SummaryCheckoutWidget extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
-              Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
-                    width: MediaQuery.of(context).size.width * 0.10,
-                    child: Checkbox(
-                      checkColor: Colors.white,
-                      activeColor: BaseColors.primaryColor,
-                      value: isChecked,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(2),
+              BlocBuilder<HandleCheckoutCubit, HandleCheckoutState>(
+                builder: (context, state) {
+                  return Row(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                        width: MediaQuery.of(context).size.width * 0.10,
+                        child: Checkbox(
+                          checkColor: Colors.white,
+                          activeColor: BaseColors.primaryColor,
+                          value: state.isTermChecked,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                          onChanged: (bool? value) {
+                            if (value == false) {
+                              context
+                                  .read<HandleCheckoutCubit>()
+                                  .termUnChecked();
+                            } else {
+                              context.read<HandleCheckoutCubit>().termChecked();
+                            }
+                          },
+                        ),
                       ),
-                      onChanged: (bool? value) {
-                        // setState(() {
-                        // isChecked = value!;
-                        // });
-                      },
-                    ),
-                  ),
-                  Text(
-                    'By checking out I agree to the ',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                ],
+                      Text(
+                        'By checking out I agree to the ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.001,
@@ -207,7 +218,5 @@ class SummaryCheckoutWidget extends StatelessWidget {
             ],
           )),
     );
-
-    // Text('Summary cart');
   }
 }

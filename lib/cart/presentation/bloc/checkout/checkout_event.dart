@@ -7,14 +7,6 @@ abstract class CheckoutEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OnGetDeliveryAddress extends CheckoutEvent {
-  final String memberId;
-  final String sDefault;
-  const OnGetDeliveryAddress(this.memberId, this.sDefault);
-  @override
-  List<Object> get props => [];
-}
-
 class OnGetCart extends CheckoutEvent {
   final String memberId;
   const OnGetCart(this.memberId);

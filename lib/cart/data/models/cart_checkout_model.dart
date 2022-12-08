@@ -4,12 +4,14 @@
 
 import 'dart:convert';
 
-import 'package:marketplace/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:marketplace_cart/cart/domain/entities/cart_checkout_item_entity.dart';
 
-CartCheckoutModel CartCheckoutModelFromJson(String str) => CartCheckoutModel.fromJson(json.decode(str));
+CartCheckoutModel CartCheckoutModelFromJson(String str) =>
+    CartCheckoutModel.fromJson(json.decode(str));
 
-String CartCheckoutModelToJson(CartCheckoutModel data) => json.encode(data.toJson());
+String CartCheckoutModelToJson(CartCheckoutModel data) =>
+    json.encode(data.toJson());
 
 class CartCheckoutModel {
   CartCheckoutModel({
@@ -26,7 +28,8 @@ class CartCheckoutModel {
   double subTotalIncTax;
   double totalIncTax;
 
-  factory CartCheckoutModel.fromJson(Map<String, dynamic> json) => CartCheckoutModel(
+  factory CartCheckoutModel.fromJson(Map<String, dynamic> json) =>
+      CartCheckoutModel(
         id: json["_id"],
         member: json["member"] == null ? null : Member.fromJson(json["member"]),
         cartsItems: json["cartsItems"] == null
@@ -39,7 +42,7 @@ class CartCheckoutModel {
 
   Map<String, dynamic> toJson() => {
         "_id": id,
-         "member": member == null ? null : member?.toJson(),
+        "member": member == null ? null : member?.toJson(),
         "cartsItems": cartsItems == null
             ? null
             : List<dynamic>.from(cartsItems!.map((x) => x.toJson())),
@@ -50,7 +53,10 @@ class CartCheckoutModel {
   CartCheckoutEntity toEntity() => CartCheckoutEntity(
         id: id,
         cartsItems: cartsItems!.map((item) => item.toEntity()).toList(),
-        member: member == null ? null : MemberEntity(memberId: member?.memberId, username: member?.username)  ,
+        member: member == null
+            ? null
+            : MemberEntity(
+                memberId: member?.memberId, username: member?.username),
         subTotalIncTax: subTotalIncTax,
         totalIncTax: totalIncTax,
       );

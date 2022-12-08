@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:marketplace/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:marketplace_cart/cart/domain/entities/cart_checkout_item_entity.dart';
 
 class CartCheckoutEntity extends Equatable {
   final String id;
@@ -30,11 +30,13 @@ class MemberEntity extends Equatable {
   final String? memberId;
   final String? username;
 
-  const MemberEntity({ this.memberId,  this.username});
+  const MemberEntity({this.memberId, this.username});
 
   @override
-  List<Object?> get props => [{
-        memberId,
-        username,
-      }];
+  List<Object?> get props => [
+        {
+          memberId,
+          username,
+        }
+      ];
 }

@@ -1,63 +1,108 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:marketplace/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace/cart/domain/entities/delivery_address_entity.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketplace_cart/cart/data/models/delivery_address_model.dart';
+import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:marketplace_cart/cart/domain/entities/delivery_address_entity.dart';
+import 'package:marketplace_cart/cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
 import 'package:ui_style/ui_style.dart';
 
 class AddressCheckoutWidget extends StatelessWidget {
-  AddressCheckoutWidget(
-      {Key? key, required this.cartData, required this.deliveryAddressDatas})
-      : super(key: key);
+  AddressCheckoutWidget({Key? key, required this.cartData}) : super(key: key);
 
   final CartCheckoutEntity cartData;
-  final List<DeliveryAddressEntity> deliveryAddressDatas;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-      child: Column(
-        children: [
-          Row(
-            // ignore: prefer_const_literals_to_create_immutables
+    final String? memberId = cartData.member?.memberId;
+    const String sDefault = 'true';
+
+    return BlocBuilder<DeliveryAddressBloc, DeliveryAddressState>(
+        builder: (context, state) {
+      if (state is DeliveryAddressInitial) {
+        context
+            .read<DeliveryAddressBloc>()
+            .add(OnGetDeliveryAddress(memberId!, sDefault));
+        return SizedBox();
+      } else if (state is GetDeliveryAddressLoading ||
+          state is GetDeliveryAddressEmpty) {
+        return SizedBox();
+      } else if (state is MainGetDeliveryAddress) {
+        final deliveryAddressDatas = state.deliveryAddressResult;
+        return Padding(
+          padding:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+          child: Column(
             children: [
-              Expanded(
-                child: Text(
-                  'Shipping Address',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
+              Row(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Shipping Address',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              if (deliveryAddressDatas.isNotEmpty)
+                ExitingAddressCheckoutWidget(
+                    addressData: deliveryAddressDatas[0]),
+              if (deliveryAddressDatas.isEmpty) NewAddressCheckoutWidget()
             ],
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
-          ),
-          if (deliveryAddressDatas.isNotEmpty)
-            ExitingAddressCheckoutWidget(
-                deliveryAddressDatas: deliveryAddressDatas),
-          if (deliveryAddressDatas.isEmpty) NewAddressCheckoutWidget()
-        ],
-      ),
-    );
-    //     },
-    //   );
+        );
+      } else {
+        return NewAddressCheckoutWidget();
+      }
+    });
+
+    // Padding(
+    //   padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+    //   child: Column(
+    //     children: [
+    //       Row(
+    //         // ignore: prefer_const_literals_to_create_immutables
+    //         children: [
+    //           Expanded(
+    //             child: Text(
+    //               'Shipping Address',
+    //               style: TextStyle(
+    //                 fontSize: 28,
+    //                 fontWeight: FontWeight.bold,
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //       SizedBox(
+    //         height: MediaQuery.of(context).size.height * 0.02,
+    //       ),
+    //       // if (deliveryAddressDatas != null)
+    //       //   ExitingAddressCheckoutWidget(
+    //       //       addressData: deliveryAddressDatas[0]),
+    //       // if (deliveryAddressDatas == null) NewAddressCheckoutWidget()
+    //     ],
+    //   ),
+    // );
   }
 }
 
 class ExitingAddressCheckoutWidget extends StatelessWidget {
-  const ExitingAddressCheckoutWidget(
-      {Key? key, required this.deliveryAddressDatas})
+  const ExitingAddressCheckoutWidget({Key? key, this.addressData})
       : super(key: key);
-
-  final List<DeliveryAddressEntity> deliveryAddressDatas;
+  final DeliveryAddressEntity? addressData;
 
   @override
   Widget build(BuildContext context) {
-    final addressData = deliveryAddressDatas[0];
+    print('--exiting----${addressData}');
     return Container(
       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
       padding: EdgeInsets.all(16),
@@ -72,7 +117,7 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${addressData.firstname} ${addressData.lastname}',
+                '${addressData?.firstname} ${addressData?.lastname}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -88,9 +133,7 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
                 ),
                 onPressed: () {
                   print('---click edit address---');
-                  Navigator.pushNamed(context, '/listaddress'
-                      // '/orderlist'
-                      );
+                  // Navigator.pushNamed(context, '/listaddress');
                 },
               )
             ],
@@ -101,7 +144,7 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                '${addressData.mobileNo}',
+                '${addressData?.mobileNo}',
                 style: TextStyle(
                   fontSize: 20,
                 ),
@@ -116,8 +159,7 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  // _checkPrefixAddress(addressData),
-                  "เลขที่ ${addressData.addressNo} หมู่บ้าน ${addressData.mooban}, อาคาร ${addressData.building} ซอย ${addressData.soi}, ถนน ${addressData.street} ${addressData.subDistrictName}, ${addressData.districtName}, ${addressData.provinceName}, ${addressData.postalCode}",
+                  checkPrefixAddress(addressData),
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -128,26 +170,27 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: EdgeInsets.all(5),
-                width: MediaQuery.of(context).size.width * 0.2,
-                decoration: BoxDecoration(
-                  border: Border.all(color: BaseColors.greyColor),
-                  color: Color(0xFFFFFFFF),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text('Default',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: BaseColors.primaryColor,
-                    ),
-                    textAlign: TextAlign.center),
-              )
-            ],
-          )
+          if (addressData?.sDefault == true)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(5),
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: BaseColors.greyColor),
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text('Default',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: BaseColors.primaryColor,
+                      ),
+                      textAlign: TextAlign.center),
+                )
+              ],
+            )
         ],
       ),
     );
@@ -199,35 +242,25 @@ class NewAddressCheckoutWidget extends StatelessWidget {
   }
 }
 
-// _checkPrefixAddress(addressData) {
-//   var addressNo;
-//   Object address = {
-//     addressNo: addressData.addressNo,
-//     // moo,
-//     // mooban,
-//     // soi,
-//     // building,
-//     // room,
-//     // floor,
-//     // street,
-//     // provinceCode,
-//     // provinceName,
-//     // districtCode,
-//     // districtName,
-//     // subDistrictCode,
-//     // subDistrictName,
-//     // mobileNo
-//   };
-//   // DeliveryAddressEntity addressData;
-//   // Set<String> address = <String>{addressData};
-//   print('---function ----->${addressData}');
-//   // var result = addressData.map((value) =>
-//   // value != null ? 'prefix_$value'.toSet() : ''
-// //   if(value != null){
-// // 'prefix_$value'.toSet();
-// //   }
-//   // );
-//   // print('---result---->${result}');
-//   // return address.addressNo;
-  
-// }
+checkPrefixAddress(addressData) {
+  final address = DeliveryAddressResult(
+    addressNo:
+        addressData.addressNo == null ? '' : 'เลขที่ ${addressData.addressNo} ',
+    mooban:
+        addressData.mooban == null ? '' : 'หมู่บ้าน ${addressData.mooban}, ',
+    building:
+        addressData.building == null ? '' : 'อาคาร ${addressData.building} ',
+    soi: addressData.soi == null ? '' : 'ซอย ${addressData.soi}, ',
+    street: addressData.street == null ? '' : 'ถนน ${addressData.street} ',
+    subDistrictName: addressData.subDistrictName == null
+        ? ''
+        : '${addressData.subDistrictName} ',
+    districtName:
+        addressData.districtName == null ? '' : '${addressData.districtName} ',
+    provinceName:
+        addressData.provinceName == null ? '' : '${addressData.provinceName} ',
+    postalCode:
+        addressData.postalCode == null ? '' : '${addressData.postalCode}',
+  );
+  return '${address.addressNo}${address.mooban}${address.building}${address.soi}${address.street}${address.districtName}${address.provinceName}${address.postalCode}';
+}

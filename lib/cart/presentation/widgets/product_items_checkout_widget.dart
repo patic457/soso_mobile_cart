@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:marketplace/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:intl/intl.dart';
+import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:marketplace_cart/cart/domain/entities/cart_checkout_item_entity.dart';
 import 'package:ui_style/ui_style.dart';
 
 class ProductItemsCheckoutWidget extends StatelessWidget {
@@ -15,13 +16,15 @@ class ProductItemsCheckoutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.simpleCurrency(locale: "th_TH");
     return ListView.builder(
       itemCount: cartData.cartsItems?.length,
       physics: ScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         final cartItem = cartData.cartsItems?[index];
-        List<OptionValuesEntity>? optionValues = cartData.cartsItems?[index].optionValues;
+        List<OptionValuesEntity>? optionValues =
+            cartData.cartsItems?[index].optionValues;
 
         return Container(
           margin: EdgeInsets.only(top: 5, bottom: 5),
@@ -73,13 +76,14 @@ class ProductItemsCheckoutWidget extends StatelessWidget {
                                 children: <TableRow>[
                                   TableRow(
                                     children: <Widget>[
-                                      Text('${cartItem?.productName}',
-                                          style: TextStyle(
-                                            fontSize: 28,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          textDirection: TextDirection.ltr),
+                                      Text(
+                                        '${cartItem?.productName}',
+                                        style: TextStyle(
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.start,
+                                      ),
                                     ],
                                   ),
                                 ],
@@ -88,41 +92,41 @@ class ProductItemsCheckoutWidget extends StatelessWidget {
                                 height:
                                     MediaQuery.of(context).size.height * 0.01,
                               ),
-                              if(optionValues?.length != 0)
-                              Table(
-                                defaultVerticalAlignment:
-                                    TableCellVerticalAlignment.middle,
-                                children: <TableRow>[
-                                  TableRow(
-                                    children: [
-                                      for (var optionValueDisplayName
-                                          in optionValues ?? [])
-                                        Text(
-                                            '${optionValueDisplayName.optionDisplayName}',
+                              if (optionValues?.length != 0)
+                                Table(
+                                  defaultVerticalAlignment:
+                                      TableCellVerticalAlignment.middle,
+                                  children: <TableRow>[
+                                    TableRow(
+                                      children: [
+                                        for (var optionValueDisplayName
+                                            in optionValues ?? [])
+                                          Text(
+                                              '${optionValueDisplayName.optionDisplayName}',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w400)),
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: <Widget>[
+                                        for (var optionValueLabel
+                                            in optionValues ?? [])
+                                          Text(
+                                            '${optionValueLabel.label}',
                                             style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w400)),
-                                    ],
-                                  ),
-                                  TableRow(
-                                    children: <Widget>[
-                                      for (var optionValueLabel
-                                          in optionValues ?? [])
-                                        Text(
-                                          '${optionValueLabel.label}',
-                                          style: TextStyle(
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              if(optionValues?.length == 0)
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.06,
-                              )
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              if (optionValues?.length == 0)
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                )
                             ],
                           )),
                     )
@@ -156,7 +160,7 @@ class ProductItemsCheckoutWidget extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '฿ ${cartItem?.productTotalPrice}',
+                      formatCurrency.format(cartItem?.productTotalPrice),
                       style: TextStyle(
                           color: BaseColors.secondaryColor,
                           fontSize: 28,

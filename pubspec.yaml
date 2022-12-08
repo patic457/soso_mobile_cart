@@ -1,4 +1,4 @@
-name: marketplace
+name: marketplace_cart
 description: A new Flutter package project.
 version: 0.0.1
 publish_to: none
@@ -21,6 +21,7 @@ dependencies:
   
   flutter_slidable: ^2.0.0
   smooth_page_indicator: ^1.0.0+2
+  intl: ^0.17.0
 
   ui_style:
     git:
@@ -30,12 +31,18 @@ dependencies:
     git:
       url: https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/core.git
       ref: developer
-  # preview:
-  #   git:
-  #     url: https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/preview_ui.git
-  #     ref: developer
+  preview:
+    git:
+      url: https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/preview_ui.git
+      ref: developer
   flutter_svg: ^1.1.6
     
+  marketplace_member:
+    git:
+      url: https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/marketplace.git
+      ref: feature/member
+
+
 
 dev_dependencies:
   flutter_test:
@@ -45,20 +52,25 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-# The following section is specific to Flutter packages.
+# The following section is specific to Flutter.
 flutter:
 
-  # To add assets to your package, add an assets section, like this:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/icons/
-  #
-  # For details regarding assets in packages, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  #
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
 
-  # To add custom fonts to your package, add a fonts section here,
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.io/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.io/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
@@ -75,5 +87,5 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
-  # For details regarding fonts in packages, see
-  # https://flutter.dev/custom-fonts/#from-packages
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.io/custom-fonts/#from-packages

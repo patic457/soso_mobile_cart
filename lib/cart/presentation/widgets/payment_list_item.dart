@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marketplace/cart/domain/entities/payment_method_entity.dart';
+import 'package:marketplace_cart/cart/domain/entities/payment_method_entity.dart';
 
 class PaymentMethodListItem extends StatelessWidget {
   const PaymentMethodListItem({
@@ -18,17 +18,16 @@ class PaymentMethodListItem extends StatelessWidget {
     late Widget paymentMethodImageWidget;
     if (paymentMethod.paymentMethodImage != null &&
         paymentMethod.paymentMethodImage!.isNotEmpty) {
-      result = paymentMethod.paymentMethodImage!
-          .substring(paymentMethod.paymentMethodImage!.indexOf('static'),
-              paymentMethod.paymentMethodImage!.length)
-          .replaceFirst('static', '');
+      result = paymentMethod.paymentMethodImage!;
     } else {
       result = '';
     }
 
-    if (result.contains('.svg')) {
-      paymentMethodImageWidget = SvgPicture.network(result);
-    } else if (result.contains('.png')) {
+    // if (result.contains('.svg')) {
+    //   paymentMethodImageWidget = SvgPicture.network(result);
+    // } else
+
+    if (result.isNotEmpty) {
       paymentMethodImageWidget = Image.network(result);
     } else {
       paymentMethodImageWidget = const SizedBox();
@@ -65,7 +64,10 @@ class PaymentMethodListItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(paymentMethod.paymentMethodName!),
+        Text(
+          paymentMethod.paymentMethodName!,
+          style: TextStyle(fontSize: 18),
+        ),
         Row(
           children: [
             checkPaymentType(paymentMethod.paymentMethodName!),
@@ -75,7 +77,10 @@ class PaymentMethodListItem extends StatelessWidget {
             SizedBox(
               height: 20,
               width: 20,
-              child: Image.asset('assets/images/icons/stroke.png'),
+              child: Image.asset(
+                'assets/images/icons/stroke.png',
+                package: 'marketplace',
+              ),
             )
           ],
         )

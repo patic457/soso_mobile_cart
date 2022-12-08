@@ -22,7 +22,9 @@ class _TermConditionPageState extends State<TermConditionPage> {
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           ),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: Icon(Icons.arrow_back_ios),
           ),
           centerTitle: true,

@@ -24,28 +24,6 @@ class CheckoutError extends CheckoutState {
   List<Object?> get props => [message];
 }
 
-// getDeliveryAddresses
-class GetDeliveryAddressLoading extends CheckoutState {
-  @override
-  String toString() => 'Loading...';
-}
-
-class GetDeliveryAddressError extends CheckoutState {
-  final String message;
-  const GetDeliveryAddressError(this.message,);
-  @override
-  List<Object?> get props => [message];
-}
-
-class GetDeliveryAddressEmpty extends CheckoutState {}
-
-class MainGetDeliveryAddress extends CheckoutState {
-  final List<DeliveryAddressEntity> deliveryAddressResult;
-  const MainGetDeliveryAddress(this.deliveryAddressResult);
-  @override
-  List<Object?> get props => [deliveryAddressResult];
-}
-
 // getCart
 class GetCartLoading extends CheckoutState {
   @override

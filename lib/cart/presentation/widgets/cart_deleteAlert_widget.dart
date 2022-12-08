@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/cart/core/themes/app_fontconfig.dart';
+import 'package:marketplace_cart/cart/core/themes/app_fontconfig.dart';
 import 'package:ui_style/base_color.dart';
-
 
 class CartDeleteAlert extends StatefulWidget {
   const CartDeleteAlert({super.key});
@@ -17,15 +16,16 @@ class _CartDeleteAlertState extends State<CartDeleteAlert> {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
-		borderRadius: BorderRadius.circular(30),
-	    ),
+        borderRadius: BorderRadius.circular(30),
+      ),
       title: Center(
         child: Text(
           'Do you want to delete this product',
-          style: TextStyle(fontSize: 20,
-          fontWeight: AppFontStyle.fontw700,
-          fontStyle: AppFontStyle.normalfontstyle,
-          color: BaseColors.darkestGrey),
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: AppFontStyle.fontw700,
+              fontStyle: AppFontStyle.normalfontstyle,
+              color: BaseColors.darkestGrey),
         ),
       ),
       actions: <Widget>[
@@ -50,8 +50,8 @@ class _CartDeleteAlertState extends State<CartDeleteAlert> {
                   onPressed: () {},
                   child: Text(
                     "Yes",
-                    style: TextStyle(fontSize: 24,
-                    fontWeight: AppFontStyle.fontw700),
+                    style: TextStyle(
+                        fontSize: 24, fontWeight: AppFontStyle.fontw700),
                   ),
                 ),
               ),
@@ -80,12 +80,14 @@ class _CartDeleteAlertState extends State<CartDeleteAlert> {
                   },
                   child: Text(
                     "No",
-                    style: TextStyle(fontSize: 24,
-                    fontWeight: AppFontStyle.fontw700),
+                    style: TextStyle(
+                        fontSize: 24, fontWeight: AppFontStyle.fontw700),
                   ),
                 ),
               ),
-              const SizedBox(height: 16,)
+              const SizedBox(
+                height: 16,
+              )
             ],
           ),
         )

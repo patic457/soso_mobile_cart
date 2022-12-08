@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:marketplace/cart/core/themes/app_colors.dart';
-import 'package:marketplace/cart/core/themes/app_fontconfig.dart';
+import 'package:marketplace_cart/cart/core/themes/app_colors.dart';
+import 'package:marketplace_cart/cart/core/themes/app_fontconfig.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:ui_style/base_color.dart';
 
@@ -273,9 +273,10 @@ class _RecommendedProductWidget extends State<RecommendedProductWidget> {
             ),
           ],
         ),
-        SizedBox(height: 16,)
+        SizedBox(
+          height: 16,
+        )
       ],
     );
   }
 }
-

@@ -2,10 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace/cart/presentation/bloc/list_payment_method/list_payment_method_bloc.dart';
-import 'package:marketplace/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
-import 'package:marketplace/cart/presentation/pages/payment_method_sub_page.dart';
-import 'package:marketplace/cart/presentation/widgets/payment_list_item.dart';
+import 'package:marketplace_cart/cart/data/models/payment_method_model.dart';
+import 'package:marketplace_cart/cart/presentation/bloc/list_payment_method/list_payment_method_bloc.dart';
+import 'package:marketplace_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+import 'package:marketplace_cart/cart/presentation/pages/payment_method_sub_page.dart';
+import 'package:marketplace_cart/cart/presentation/widgets/payment_list_item.dart';
+import 'package:ui_style/ui_style.dart';
 
 class PaymentMethodListPage extends StatelessWidget {
   const PaymentMethodListPage({super.key});
@@ -15,8 +17,18 @@ class PaymentMethodListPage extends StatelessWidget {
     context.read<ListPaymentMethodBloc>().add(GetPaymentMethodEvent());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Payment'),
+        backgroundColor: BaseColors.secondaryColor,
+        title: const Text(
+          'Payment',
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: BlocBuilder<ListPaymentMethodBloc, ListPaymentMethodState>(
         builder: (context, state) {
@@ -39,7 +51,7 @@ class PaymentMethodListPage extends StatelessWidget {
                           Text(
                             "Payment Method",
                             style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                fontSize: 28, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -63,21 +75,28 @@ class PaymentMethodListPage extends StatelessWidget {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        //debugPrint('Clicked');
+                                        log(paymentMethod.toString());
                                         context
                                             .read<SelectPaymentMethodBloc>()
                                             .add(OnSelectPaymentMethodEvent(
                                                 paymentMethodEntity:
                                                     paymentMethod));
-                                        if (paymentMethod.bankOptions != null) {
-                                          if (paymentMethod
-                                              .bankOptions!.isNotEmpty) {
-                                            Navigator.of(context)
-                                                .push(MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PaymentMethodSubPage(),
-                                            ));
-                                          }
+                                        if (paymentMethod.paymentMethodName!
+                                            .toLowerCase()
+                                            .contains('banking')) {
+                                          Navigator.of(context)
+                                              .pushNamed('sub-payment-method');
+                                        } else {
+                                          context
+                                              .read<SelectPaymentMethodBloc>()
+                                              .add(
+                                                  OnSelectSubPaymentMethodEvent(
+                                                      subPaymentMethod:
+                                                          BankOption(
+                                                              bankCode: '',
+                                                              bankImage: '',
+                                                              bankName: '')));
+                                          Navigator.of(context).pop();
                                         }
                                       },
                                       child: PaymentMethodListItem(

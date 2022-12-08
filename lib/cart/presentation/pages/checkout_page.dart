@@ -1,13 +1,16 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace/cart/presentation/bloc/checkout/checkout_bloc.dart';
-import 'package:marketplace/cart/presentation/widgets/address_checkout_widget.dart';
-import 'package:marketplace/cart/presentation/widgets/payment_method_checkout_widget.dart';
-import 'package:marketplace/cart/presentation/widgets/product_items_checkout_widget.dart';
-import 'package:marketplace/cart/presentation/widgets/step_progressbar_checkout_widget.dart';
-import 'package:marketplace/cart/presentation/widgets/summary_checkout_widget.dart';
+import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:marketplace_cart/cart/presentation/bloc/checkout/checkout_bloc.dart';
+import 'package:marketplace_cart/cart/presentation/widgets/address_checkout_widget.dart';
+import 'package:marketplace_cart/cart/presentation/widgets/payment_method_checkout_widget.dart';
+import 'package:marketplace_cart/cart/presentation/widgets/product_items_checkout_widget.dart';
+import 'package:marketplace_cart/cart/presentation/widgets/step_progressbar_checkout_widget.dart';
+import 'package:marketplace_cart/cart/presentation/widgets/summary_checkout_widget.dart';
 import 'package:ui_style/ui_style.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -18,14 +21,12 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
+  // final String memberId = 'yozTdszHM3V';
   final String memberId = 'f6YZQ2H2og1';
-  final String sDefault = 'true';
 
   @override
   Widget build(BuildContext context) {
     final checkoutBloc = context.read<CheckoutBloc>();
-    const sDefault = 'true';
-    // context.read<CheckoutBloc>().add(OnGetDeliveryAddress(memberId));
     return Scaffold(
       appBar: AppBar(
         backgroundColor: BaseColors.secondaryColor,
@@ -45,17 +46,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
         builder: (context, state) {
           if (state is CheckoutInitial) {
             checkoutBloc.add((OnGetCart(memberId)));
-            checkoutBloc.add(OnGetDeliveryAddress(memberId, sDefault));
-            print('------CheckoutInitial------');
             return const Center(child: CircularProgressIndicator());
           } else if (state is GetCartLoading) {
-            print('------GetCartLoading------');
             return const Center(child: CircularProgressIndicator());
           } else if (state is GetCartEmpty) {
-            print('------GetCartEmpty------');
             return const SizedBox();
           } else if (state is MainGetcart) {
-            print('------MainGetcart------');
             return RefreshIndicator(
               // ดึงหน้าจอrefresh UI
               onRefresh: () async {
@@ -75,10 +71,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         child: ProductItemsCheckoutWidget(
                             cartData: state.cartResult),
                       ),
-                      AddressCheckoutWidget(
-                          cartData: state.cartResult,
-                          deliveryAddressDatas:
-                              checkoutBloc.deliveryAddressDatas),
+                      AddressCheckoutWidget(cartData: state.cartResult),
                       PaymentMethodCheckoutWidget(),
                       SummaryCheckoutWidget(cartData: state.cartResult),
                     ],
@@ -88,6 +81,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             );
           } else {
             return SizedBox();
+            // return PaymentMethodCheckoutWidget();
           }
         },
       ),
@@ -155,7 +149,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     fontSize: 24,
                     buttonType: ButtonType.secondaryBtn,
                     onPress: () {
-                      Navigator.of(context).pop(true);
+                      Navigator.of(context).pushNamed('/cart');
+                      // Navigator.of(context).pop();
                     },
                   ),
                 ),
