@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marketplace_cart/cart/domain/entities/payment_method_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/payment_method_entity.dart';
 
 class PaymentMethodListItem extends StatelessWidget {
   const PaymentMethodListItem({

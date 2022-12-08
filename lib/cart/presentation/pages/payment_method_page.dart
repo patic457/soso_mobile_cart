@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace_cart/cart/data/models/payment_method_model.dart';
-import 'package:marketplace_cart/cart/presentation/bloc/list_payment_method/list_payment_method_bloc.dart';
-import 'package:marketplace_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
-import 'package:marketplace_cart/cart/presentation/pages/payment_method_sub_page.dart';
-import 'package:marketplace_cart/cart/presentation/widgets/payment_list_item.dart';
+import 'package:soso_mobile_cart/cart/data/models/payment_method_model.dart';
+import 'package:soso_mobile_cart/cart/presentation/bloc/list_payment_method/list_payment_method_bloc.dart';
+import 'package:soso_mobile_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+import 'package:soso_mobile_cart/cart/presentation/pages/payment_method_sub_page.dart';
+import 'package:soso_mobile_cart/cart/presentation/widgets/payment_list_item.dart';
 import 'package:ui_style/ui_style.dart';
 
 class PaymentMethodListPage extends StatelessWidget {

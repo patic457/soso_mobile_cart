@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:marketplace_cart/cart/core/exception.dart';
-import 'package:marketplace_cart/cart/domain/entities/delivery_address_entity.dart';
-import 'package:marketplace_cart/cart/domain/usecases/get_delivery_address.dart';
+import 'package:soso_mobile_cart/cart/core/exception.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/delivery_address_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/usecases/get_delivery_address.dart';
 
 part 'delivery_address_event.dart';
 part 'delivery_address_state.dart';

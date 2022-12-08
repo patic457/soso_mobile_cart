@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:marketplace_cart/cart/core/exception.dart';
-import 'package:marketplace_cart/cart/core/failure.dart';
-import 'package:marketplace_cart/cart/data/datasources/remote_data_source.dart';
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace_cart/cart/domain/repositories/cart_checkout_repository.dart';
+import 'package:soso_mobile_cart/cart/core/exception.dart';
+import 'package:soso_mobile_cart/cart/core/failure.dart';
+import 'package:soso_mobile_cart/cart/data/datasources/remote_data_source.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/repositories/cart_checkout_repository.dart';
 
 class CartCheckoutRepositoryImpl extends CartCheckoutRepository {
   final RemoteDataSource remoteDataSource;

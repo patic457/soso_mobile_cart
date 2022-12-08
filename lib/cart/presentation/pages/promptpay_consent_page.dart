@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_cart/cart/core/themes/app_colors.dart';
+import 'package:soso_mobile_cart/cart/core/themes/app_colors.dart';
 
 class PromptPayConsentPage extends StatelessWidget {
   const PromptPayConsentPage({super.key});

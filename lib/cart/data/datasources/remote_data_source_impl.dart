@@ -5,12 +5,12 @@ import 'dart:io';
 import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-import 'package:marketplace_cart/cart/core/constants.dart';
-import 'package:marketplace_cart/cart/core/exception.dart';
-import 'package:marketplace_cart/cart/data/datasources/remote_data_source.dart';
-import 'package:marketplace_cart/cart/data/models/cart_checkout_model.dart';
-import 'package:marketplace_cart/cart/data/models/delivery_address_model.dart';
-import 'package:marketplace_cart/cart/data/models/payment_method_model.dart';
+import 'package:soso_mobile_cart/cart/core/constants.dart';
+import 'package:soso_mobile_cart/cart/core/exception.dart';
+import 'package:soso_mobile_cart/cart/data/datasources/remote_data_source.dart';
+import 'package:soso_mobile_cart/cart/data/models/cart_checkout_model.dart';
+import 'package:soso_mobile_cart/cart/data/models/delivery_address_model.dart';
+import 'package:soso_mobile_cart/cart/data/models/payment_method_model.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final http.Client client;

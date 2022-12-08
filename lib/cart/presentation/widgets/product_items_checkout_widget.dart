@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_item_entity.dart';
 import 'package:ui_style/ui_style.dart';
 
 class ProductItemsCheckoutWidget extends StatelessWidget {

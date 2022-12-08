@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:marketplace_cart/cart/core/exception.dart';
-import 'package:marketplace_cart/cart/core/failure.dart';
-import 'package:marketplace_cart/cart/data/datasources/remote_data_source.dart';
-import 'package:marketplace_cart/marketplace.dart';
+import 'package:soso_mobile_cart/cart/core/exception.dart';
+import 'package:soso_mobile_cart/cart/core/failure.dart';
+import 'package:soso_mobile_cart/cart/data/datasources/remote_data_source.dart';
+import 'package:soso_mobile_cart/marketplace.dart';
 
 class AddressRepositoryImpl extends AddressRepository {
   final RemoteDataSource remoteDataSource;

@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marketplace_cart/cart/core/themes/themes.dart';
-import 'package:marketplace_cart/cart/data/models/payment_method_model.dart';
-import 'package:marketplace_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+import 'package:soso_mobile_cart/cart/core/themes/themes.dart';
+import 'package:soso_mobile_cart/cart/data/models/payment_method_model.dart';
+import 'package:soso_mobile_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
 import 'package:ui_style/ui_style.dart';
 
 class PaymentMethodSubPage extends StatelessWidget {

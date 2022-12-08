@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace_cart/cart/data/models/delivery_address_model.dart';
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace_cart/cart/domain/entities/delivery_address_entity.dart';
-import 'package:marketplace_cart/cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
+import 'package:soso_mobile_cart/cart/data/models/delivery_address_model.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/delivery_address_entity.dart';
+import 'package:soso_mobile_cart/cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
 import 'package:ui_style/ui_style.dart';
 
 class AddressCheckoutWidget extends StatelessWidget {

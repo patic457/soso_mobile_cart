@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_item_entity.dart';
 
 class CartCheckoutEntity extends Equatable {
   final String id;

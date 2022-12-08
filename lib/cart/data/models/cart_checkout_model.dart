@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_item_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_item_entity.dart';
 
 CartCheckoutModel CartCheckoutModelFromJson(String str) =>
     CartCheckoutModel.fromJson(json.decode(str));

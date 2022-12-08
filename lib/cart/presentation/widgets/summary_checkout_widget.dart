@@ -5,8 +5,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace_cart/cart/presentation/bloc/handle_checkout/handle_checkout_cubit.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:soso_mobile_cart/cart/presentation/bloc/handle_checkout/handle_checkout_cubit.dart';
 import 'package:ui_style/ui_style.dart';
 
 class SummaryCheckoutWidget extends StatelessWidget {

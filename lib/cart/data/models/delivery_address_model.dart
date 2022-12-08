@@ -4,9 +4,9 @@
 
 import 'dart:convert';
 
-import 'package:marketplace_cart/cart/data/models/links_model.dart';
-import 'package:marketplace_cart/cart/data/models/meta_model.dart';
-import 'package:marketplace_cart/marketplace.dart';
+import 'package:soso_mobile_cart/cart/data/models/links_model.dart';
+import 'package:soso_mobile_cart/cart/data/models/meta_model.dart';
+import 'package:soso_mobile_cart/marketplace.dart';
 
 DeliveryAddressModel deliveryAddressModelFromJson(String str) =>
     DeliveryAddressModel.fromJson(json.decode(str));

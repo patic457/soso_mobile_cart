@@ -4,13 +4,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace_cart/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:marketplace_cart/cart/presentation/bloc/checkout/checkout_bloc.dart';
-import 'package:marketplace_cart/cart/presentation/widgets/address_checkout_widget.dart';
-import 'package:marketplace_cart/cart/presentation/widgets/payment_method_checkout_widget.dart';
-import 'package:marketplace_cart/cart/presentation/widgets/product_items_checkout_widget.dart';
-import 'package:marketplace_cart/cart/presentation/widgets/step_progressbar_checkout_widget.dart';
-import 'package:marketplace_cart/cart/presentation/widgets/summary_checkout_widget.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_entity.dart';
+import 'package:soso_mobile_cart/cart/presentation/bloc/checkout/checkout_bloc.dart';
+import 'package:soso_mobile_cart/cart/presentation/widgets/address_checkout_widget.dart';
+import 'package:soso_mobile_cart/cart/presentation/widgets/payment_method_checkout_widget.dart';
+import 'package:soso_mobile_cart/cart/presentation/widgets/product_items_checkout_widget.dart';
+import 'package:soso_mobile_cart/cart/presentation/widgets/step_progressbar_checkout_widget.dart';
+import 'package:soso_mobile_cart/cart/presentation/widgets/summary_checkout_widget.dart';
 import 'package:ui_style/ui_style.dart';
 
 class CheckoutPage extends StatefulWidget {

@@ -4,8 +4,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace_cart/cart/domain/entities/selected_payment_method_entity.dart';
-import 'package:marketplace_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+import 'package:soso_mobile_cart/cart/domain/entities/selected_payment_method_entity.dart';
+import 'package:soso_mobile_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
 import 'package:ui_style/ui_style.dart';
 
 class PaymentMethodCheckoutWidget extends StatelessWidget {

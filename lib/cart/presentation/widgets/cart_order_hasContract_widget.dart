@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace_cart/cart/core/themes/app_colors.dart';
-import 'package:marketplace_cart/cart/core/themes/app_fontconfig.dart';
-import 'package:marketplace_cart/cart/presentation/bloc/count_amount/count_amount_bloc.dart';
-import 'package:marketplace_cart/cart/presentation/widgets/cart_deleteAlert_widget.dart';
+import 'package:soso_mobile_cart/cart/core/themes/app_colors.dart';
+import 'package:soso_mobile_cart/cart/core/themes/app_fontconfig.dart';
+import 'package:soso_mobile_cart/cart/presentation/bloc/count_amount/count_amount_bloc.dart';
+import 'package:soso_mobile_cart/cart/presentation/widgets/cart_deleteAlert_widget.dart';
 import 'package:ui_style/base_color.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 

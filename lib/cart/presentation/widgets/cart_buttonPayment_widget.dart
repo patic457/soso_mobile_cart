@@ -1,4 +1,4 @@
-import 'package:marketplace_cart/cart/core/themes/app_fontconfig.dart';
+import 'package:soso_mobile_cart/cart/core/themes/app_fontconfig.dart';
 import 'package:ui_style/base_color.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:marketplace_cart/cart/core/util.dart';
+import 'package:soso_mobile_cart/cart/core/util.dart';
 
 class Urls {
   static const String listPaymentMethodUrl =

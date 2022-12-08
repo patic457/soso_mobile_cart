@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:marketplace_cart/cart/core/failure.dart';
-import 'package:marketplace_cart/marketplace.dart';
+import 'package:soso_mobile_cart/cart/core/failure.dart';
+import 'package:soso_mobile_cart/marketplace.dart';
 
 class GetdeliveryAddressesUseCase {
   final AddressRepository repository;
