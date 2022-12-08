@@ -4,7 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace_member/member/presentation/pages/pages.dart';
+import 'package:marketplace_member/member/presentation/pages/address_list_page.dart';
 import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_entity.dart';
 import 'package:soso_mobile_cart/cart/presentation/bloc/checkout/checkout_bloc.dart';
 import 'package:soso_mobile_cart/cart/presentation/widgets/address_checkout_widget.dart';
