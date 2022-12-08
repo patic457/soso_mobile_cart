@@ -8,6 +8,8 @@ import 'package:soso_mobile_cart/cart/domain/entities/delivery_address_entity.da
 import 'package:soso_mobile_cart/cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
 import 'package:ui_style/ui_style.dart';
 
+import 'package:marketplace_member/member/presentation/pages/address_list_page.dart';
+
 class AddressCheckoutWidget extends StatelessWidget {
   AddressCheckoutWidget({Key? key, required this.cartData}) : super(key: key);
 
@@ -134,6 +136,9 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
                 onPressed: () {
                   print('---click edit address---');
                   // Navigator.pushNamed(context, '/listaddress');
+                  //change pushNAme /marketplace_member/addresslist
+                  Navigator.pushNamed(
+                      context, '/marketplace_member/addresslist');
                 },
               )
             ],
