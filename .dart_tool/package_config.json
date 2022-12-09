@@ -441,7 +441,7 @@
     },
     {
       "name": "marketplace_member",
-      "rootUri": "file:///Users/PATIC457/Downloads/SDK/flutter/.pub-cache/git/marketplace-1f3c4ed5179527c80cd39345b706f0009c89d969/",
+      "rootUri": "file:///Users/PATIC457/Downloads/SDK/flutter/.pub-cache/git/marketplace-5ae82f46e40970664be8de290dc672f250b7124d/",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -591,7 +591,7 @@
     },
     {
       "name": "preview",
-      "rootUri": "file:///Users/PATIC457/Downloads/SDK/flutter/.pub-cache/git/preview_ui-709b5220f876ee8fe0a075faa06f0c3c244cc487/",
+      "rootUri": "file:///Users/PATIC457/Downloads/SDK/flutter/.pub-cache/git/preview_ui-6c8ecaa81e5c1ffff49fd4018bc421fd16e7c9a0/",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -771,7 +771,7 @@
     },
     {
       "name": "ui_style",
-      "rootUri": "file:///Users/PATIC457/Downloads/SDK/flutter/.pub-cache/git/ui_styles-b1772c79adc04cd45d3a6fa07449afe0e6f4bdea/",
+      "rootUri": "file:///Users/PATIC457/Downloads/SDK/flutter/.pub-cache/git/ui_styles-d43752b86b0d73f903ff55ec224ceef6e8dc62a4/",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -830,7 +830,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-12-08T10:57:09.923791Z",
+  "generated": "2022-12-09T04:51:57.725876Z",
   "generator": "pub",
   "generatorVersion": "2.18.5"
 }

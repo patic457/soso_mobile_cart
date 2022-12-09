@@ -511,7 +511,7 @@ packages:
     description:
       path: "."
       ref: "feature/member"
-      resolved-ref: "1f3c4ed5179527c80cd39345b706f0009c89d969"
+      resolved-ref: "5ae82f46e40970664be8de290dc672f250b7124d"
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/marketplace.git"
     source: git
     version: "0.0.1"
@@ -688,7 +688,7 @@ packages:
     description:
       path: "."
       ref: developer
-      resolved-ref: "709b5220f876ee8fe0a075faa06f0c3c244cc487"
+      resolved-ref: "6c8ecaa81e5c1ffff49fd4018bc421fd16e7c9a0"
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/preview_ui.git"
     source: git
     version: "0.0.1"
@@ -898,7 +898,7 @@ packages:
     description:
       path: "."
       ref: "develop-0.1"
-      resolved-ref: b1772c79adc04cd45d3a6fa07449afe0e6f4bdea
+      resolved-ref: d43752b86b0d73f903ff55ec224ceef6e8dc62a4
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/ui_styles.git"
     source: git
     version: "0.0.1"

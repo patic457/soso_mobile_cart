@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketplace_member/member/presentation/bloc/delivery_address_member_bloc/delivery_address_member_bloc.dart';
+
+import 'package:marketplace_member/member/presentation/pages/pages.dart';
 import 'package:soso_mobile_cart/app_bloc_observer.dart';
 import 'package:soso_mobile_cart/cart/presentation/bloc/checkout/checkout_bloc.dart';
 import 'package:soso_mobile_cart/cart/presentation/bloc/count_amount/count_amount_bloc.dart';
-import 'package:soso_mobile_cart/cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
+// import 'package:soso_mobile_cart/cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
 import 'package:soso_mobile_cart/cart/presentation/bloc/handle_checkout/handle_checkout_cubit.dart';
 import 'package:soso_mobile_cart/cart/presentation/bloc/list_payment_method/list_payment_method_bloc.dart';
 import 'package:soso_mobile_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
@@ -16,12 +19,34 @@ import 'package:soso_mobile_cart/injection.dart' as di;
 import 'package:bloc/bloc.dart';
 import 'package:preview/screens/preview_screen.dart';
 
+import 'cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
+
 class RouterGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Bloc.observer = AppBlocObserver();
     final args = settings.arguments;
 
     switch (settings.name) {
+      case '/marketplace_member/addresslist':
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<DeliveryAddressMemberBloc>(
+                  create: (context) => di.locator<DeliveryAddressMemberBloc>())
+            ],
+            child: AddressListPage(),
+          ),
+        );
+      case '/marketplace_member/addresslist':
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<DeliveryAddressMemberBloc>(
+                  create: (context) => di.locator<DeliveryAddressMemberBloc>())
+            ],
+            child: AddressListPage(),
+          ),
+        );
       case '/cart':
         return MaterialPageRoute(
           builder: (context) {

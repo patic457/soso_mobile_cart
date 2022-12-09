@@ -12,6 +12,8 @@ import 'package:soso_mobile_cart/cart/presentation/widgets/step_progressbar_chec
 import 'package:soso_mobile_cart/cart/presentation/widgets/summary_checkout_widget.dart';
 import 'package:ui_style/ui_style.dart';
 
+import '../widgets/shipping_address_widget.dart';
+
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
 
@@ -68,9 +70,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       Expanded(
                         flex: 0,
                         child: ProductItemsCheckoutWidget(
-                            cartData: state.cartResult),
+                          cartData: state.cartResult,
+                        ),
                       ),
-                      AddressCheckoutWidget(cartData: state.cartResult),
+                      ShippingAddresstWidget(cartData: state.cartResult),
+                      //
+                      // AddressCheckoutWidget(cartData: state.cartResult),
                       //
                       PaymentMethodCheckoutWidget(),
                       SummaryCheckoutWidget(cartData: state.cartResult),

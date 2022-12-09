@@ -15,7 +15,10 @@ class _CartorderWidget extends State<CartorderWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [CartOrderHasContractWidget(), CartOrderNotHasContractWidget()],
+      children: [
+        // CartOrderHasContractWidget(),
+        CartOrderNotHasContractWidget(),
+      ],
     );
   }
 }

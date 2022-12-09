@@ -2,14 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:soso_mobile_cart/cart/data/models/delivery_address_model.dart';
-import 'package:soso_mobile_cart/cart/domain/entities/cart_checkout_entity.dart';
-import 'package:soso_mobile_cart/cart/domain/entities/delivery_address_entity.dart';
-import 'package:soso_mobile_cart/cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
+
 import 'package:ui_style/ui_style.dart';
 
-class AddressCheckoutWidget extends StatelessWidget {
-  AddressCheckoutWidget({Key? key, required this.cartData}) : super(key: key);
+import '../../data/models/delivery_address_model.dart';
+import '../../domain/entities/cart_checkout_entity.dart';
+import '../../domain/entities/delivery_address_entity.dart';
+import '../bloc/delivery_address/delivery_address_bloc.dart';
+
+class ShippingAddresstWidget extends StatelessWidget {
+  ShippingAddresstWidget({Key? key, required this.cartData}) : super(key: key);
 
   final CartCheckoutEntity cartData;
 
@@ -133,7 +135,11 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
                 ),
                 onPressed: () {
                   print('---click edit address---');
-                  Navigator.pushNamed(context, '/listaddress');
+                  // Navigator.pushNamed(context, '/listaddress');
+                  //change pushNAme /marketplace_member/addresslist
+                  //
+                  Navigator.pushNamed(
+                      context, '/marketplace_member/addresslist');
                 },
               )
             ],
