@@ -1,16 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:marketplace_member/member/data/datasources/datasources.dart';
-import 'package:marketplace_member/member/data/repositories/location_repository_impl.dart';
-import 'package:marketplace_member/member/data/repositories/member_repository_impl.dart';
-import 'package:marketplace_member/member/domain/repositories/location_repository.dart';
-import 'package:marketplace_member/member/domain/repositories/member_repository.dart';
-import 'package:marketplace_member/member/domain/usecases/create_delivery_address.dart';
-import 'package:marketplace_member/member/domain/usecases/get_delivery_addresses_list.dart';
-import 'package:marketplace_member/member/domain/usecases/get_suggest_location.dart';
-import 'package:marketplace_member/member/presentation/bloc/delivery_address_member_bloc/delivery_address_member_bloc.dart';
-import 'package:marketplace_member/member/presentation/bloc/is_complete_form_cubit.dart';
-import 'package:marketplace_member/member/presentation/bloc/member/member_bloc.dart';
-import 'package:marketplace_member/member/presentation/bloc/selected_index_cubit.dart';
+import 'package:marketplace_member/injection.dart';
+
 import 'package:soso_mobile_cart/cart/data/datasources/remote_data_source.dart';
 import 'package:soso_mobile_cart/cart/data/datasources/remote_data_source_impl.dart';
 import 'package:soso_mobile_cart/cart/data/repositories/address_repository_impl.dart';
@@ -28,6 +18,19 @@ import 'package:soso_mobile_cart/cart/presentation/bloc/handle_checkout/handle_c
 import 'package:soso_mobile_cart/cart/presentation/bloc/list_payment_method/list_payment_method_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:soso_mobile_cart/cart/presentation/bloc/select_payment_method/select_payment_method_bloc.dart';
+
+import 'package:marketplace_member/member/data/datasources/datasources.dart';
+import 'package:marketplace_member/member/data/repositories/location_repository_impl.dart';
+import 'package:marketplace_member/member/data/repositories/member_repository_impl.dart';
+import 'package:marketplace_member/member/domain/repositories/location_repository.dart';
+import 'package:marketplace_member/member/domain/repositories/member_repository.dart';
+import 'package:marketplace_member/member/domain/usecases/create_delivery_address.dart';
+import 'package:marketplace_member/member/domain/usecases/get_delivery_addresses_list.dart';
+import 'package:marketplace_member/member/domain/usecases/get_suggest_location.dart';
+import 'package:marketplace_member/member/presentation/bloc/delivery_address_member_bloc/delivery_address_member_bloc.dart';
+import 'package:marketplace_member/member/presentation/bloc/is_complete_form_cubit.dart';
+import 'package:marketplace_member/member/presentation/bloc/member/member_bloc.dart';
+import 'package:marketplace_member/member/presentation/bloc/selected_index_cubit.dart';
 
 final locator = GetIt.instance;
 
@@ -70,33 +73,7 @@ void init() {
   // external
   locator.registerLazySingleton(() => http.Client());
 
+  // Member
+  initMember();
   //
-  //bloc
-  locator.registerFactory(() => MemberBloc(
-        locator(),
-        locator(),
-      ));
-  locator.registerFactory(() => IsCompleteFormCubit());
-  locator.registerFactory(() => SelectLocationDropdownIndexCubit());
-  locator.registerFactory(() => DeliveryAddressMemberBloc(
-        locator(),
-      ));
-  //usecase
-  locator.registerLazySingleton(() => GetSuggestLocation(locator()));
-  locator.registerLazySingleton(() => CreateDeliveryAddresses(locator()));
-  locator.registerLazySingleton(
-      () => GetDeliveryAddressesList(memberRepository: locator()));
-  //repository
-  locator.registerLazySingleton<LocationRepository>(
-    () => LocationRepositoryImpl(
-      memberDataSource: locator(),
-    ),
-  );
-  locator.registerLazySingleton<MemberRepository>(
-    () => MemberRepositoryImpl(
-      memberDataSource: locator(),
-    ),
-  );
-  //data source
-  locator.registerLazySingleton<MemberDataSource>(() => MemberDataSourceImpl());
 }

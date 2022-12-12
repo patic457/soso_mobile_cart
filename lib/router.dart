@@ -29,30 +29,30 @@ class RouterGenerator {
     switch (settings.name) {
       case '/marketplace_member/addresslist':
         return MaterialPageRoute(
-          builder: (context) => MultiBlocProvider(
-            providers: [
-              BlocProvider<DeliveryAddressMemberBloc>(
-                  create: (context) => di.locator<DeliveryAddressMemberBloc>())
-            ],
-            child: AddressListPage(),
-          ),
-        );
-      case '/marketplace_member/addresslist':
-        return MaterialPageRoute(
-          builder: (context) => MultiBlocProvider(
-            providers: [
-              BlocProvider<DeliveryAddressMemberBloc>(
-                  create: (context) => di.locator<DeliveryAddressMemberBloc>())
-            ],
-            child: AddressListPage(),
-          ),
+          builder: (context) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider<DeliveryAddressMemberBloc>(
+                    create: (context) =>
+                        di.locator<DeliveryAddressMemberBloc>())
+              ],
+              child: AddressListPage(),
+            );
+          },
         );
       case '/cart':
         return MaterialPageRoute(
           builder: (context) {
-            return BlocProvider(
-              create: (context) => CountAmountBloc(),
-              child: const CartPage(),
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider<CheckoutBloc>(
+                  create: (context) => di.locator<CheckoutBloc>(),
+                ),
+                BlocProvider<CountAmountBloc>(
+                  create: (context) => CountAmountBloc(),
+                )
+              ],
+              child: CartPage(),
             );
           },
         );
@@ -61,6 +61,11 @@ class RouterGenerator {
           builder: (context) {
             return MultiBlocProvider(
               providers: [
+                //
+                // BlocProvider<DeliveryAddressMemberBloc>(
+                //   create: (context) => di.locator<DeliveryAddressMemberBloc>(),
+                // ),
+                //
                 BlocProvider<CheckoutBloc>(
                     create: (context) => di.locator<CheckoutBloc>()),
                 BlocProvider.value(
@@ -77,7 +82,7 @@ class RouterGenerator {
             );
           },
         );
-      case 'payment-method':
+      case '/payment-method':
         return MaterialPageRoute(
           builder: (context) {
             return MultiBlocProvider(
@@ -93,7 +98,7 @@ class RouterGenerator {
             );
           },
         );
-      case 'sub-payment-method':
+      case '/sub-payment-method':
         return MaterialPageRoute(
           builder: (context) {
             return BlocProvider.value(
@@ -106,7 +111,7 @@ class RouterGenerator {
             // );
           },
         );
-      case 'terms-conditions':
+      case '/terms-conditions':
         return MaterialPageRoute(
           builder: (context) {
             return const TermConditionPage();

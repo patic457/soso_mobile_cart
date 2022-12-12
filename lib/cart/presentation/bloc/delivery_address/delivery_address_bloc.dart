@@ -17,6 +17,7 @@ class DeliveryAddressBloc
   DeliveryAddressBloc(this._getdeliveryAddressesUseCase)
       : super(DeliveryAddressInitial()) {
     on<OnGetDeliveryAddress>(_onGetDeliveryAddressesEvent);
+    on<OnSelectDeliveryAddress>(_onSelectDeliveryAddressesEvent);
   }
 
   // getDeliveryAddresses
@@ -26,6 +27,29 @@ class DeliveryAddressBloc
     try {
       final deliveryAddressResult = await _getdeliveryAddressesUseCase.execute(
           event.memberId, event.sDefault);
+
+      print('===deliveryAddressResult===');
+      deliveryAddressResult.fold(
+        (failure) {
+          emit(GetDeliveryAddressError(failure.message));
+        },
+        (data) async {
+          _deliveryAddressDatas = data;
+          emit(MainGetDeliveryAddress(data));
+        },
+      );
+    } on ServerException {
+      emit(GetDeliveryAddressEmpty());
+    }
+  }
+
+  // selectDeliveryAddresses
+  Future<void> _onSelectDeliveryAddressesEvent(
+      OnSelectDeliveryAddress event, Emitter<DeliveryAddressState> emit) async {
+    emit(GetDeliveryAddressLoading());
+    try {
+      final deliveryAddressResult =
+          await _getdeliveryAddressesUseCase.execute(event.memberId, event.id);
 
       print('===deliveryAddressResult===');
       deliveryAddressResult.fold(

@@ -688,7 +688,7 @@ packages:
     description:
       path: "."
       ref: developer
-      resolved-ref: "6c8ecaa81e5c1ffff49fd4018bc421fd16e7c9a0"
+      resolved-ref: "6f85e3aaf9c974c2a28185eea74b15408a219bef"
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/preview_ui.git"
     source: git
     version: "0.0.1"
@@ -898,7 +898,7 @@ packages:
     description:
       path: "."
       ref: "develop-0.1"
-      resolved-ref: d43752b86b0d73f903ff55ec224ceef6e8dc62a4
+      resolved-ref: "0045c2c166d55a63f39622529d94a9843873c4f7"
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/ui_styles.git"
     source: git
     version: "0.0.1"

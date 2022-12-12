@@ -5,4 +5,7 @@ import 'package:soso_mobile_cart/marketplace.dart';
 abstract class AddressRepository {
   Future<Either<Failure, List<DeliveryAddressEntity>>> getDeliveryAddress(
       String memberId, String sDefault);
+
+  Future<Either<Failure, List<DeliveryAddressEntity>>> selectDeliveryAddress(
+      String memberId, String id);
 }

@@ -14,3 +14,11 @@ class OnGetDeliveryAddress extends DeliveryAddressEvent {
   @override
   List<Object> get props => [];
 }
+
+class OnSelectDeliveryAddress extends DeliveryAddressEvent {
+  final String memberId;
+  final String id;
+  const OnSelectDeliveryAddress(this.memberId, this.id);
+  @override
+  List<Object> get props => [];
+}

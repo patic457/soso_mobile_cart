@@ -27,6 +27,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
+    print('Address Id: ' + arguments['id'].toString());
+
     final checkoutBloc = context.read<CheckoutBloc>();
     return Scaffold(
       appBar: AppBar(

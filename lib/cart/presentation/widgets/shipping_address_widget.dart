@@ -104,7 +104,13 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('--exiting----${addressData}');
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
+    var idd = arguments['sId'];
+
+    print('--exiting----${addressData} ' + idd.toString());
+
     return Container(
       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
       padding: EdgeInsets.all(16),
@@ -119,7 +125,7 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${addressData?.firstname} ${addressData?.lastname}',
+                '${addressData?.firstname} ${addressData?.lastname} ${addressData?.id}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

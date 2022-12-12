@@ -104,7 +104,7 @@ class ExitingPaymentmethodWidget extends StatelessWidget {
                         decoration: TextDecoration.underline),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, 'payment-method');
+                    Navigator.pushNamed(context, '/payment-method');
                   },
                 )
               ],
@@ -132,7 +132,7 @@ class AddPaymentmethodWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         print('----click select payment method----');
-        Navigator.pushNamed(context, 'payment-method');
+        Navigator.pushNamed(context, '/payment-method');
       },
       child: Row(
         children: [
