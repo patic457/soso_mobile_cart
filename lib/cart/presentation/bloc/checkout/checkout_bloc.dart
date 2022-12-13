@@ -36,4 +36,24 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       emit(GetCartEmpty());
     }
   }
+
+  // getCart2
+  Future<void> _onSelectCart(
+      OnGetCart event, Emitter<CheckoutState> emit) async {
+    emit(GetCartLoading());
+    try {
+      final cart = await _GetCartCheckoutUseCase.execute(event.memberId);
+      cart.fold(
+        (failure) {
+          emit(GetCartError(failure.message));
+        },
+        (data) {
+          _cartData = data;
+          emit(MainGetcart(data));
+        },
+      );
+    } on ServerException {
+      emit(GetCartEmpty());
+    }
+  }
 }

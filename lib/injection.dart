@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:marketplace_member/injection.dart';
+import 'package:marketplace_member/injection.dart' as initMember;
 
 import 'package:soso_mobile_cart/cart/data/datasources/remote_data_source.dart';
 import 'package:soso_mobile_cart/cart/data/datasources/remote_data_source_impl.dart';
@@ -32,6 +32,8 @@ import 'package:marketplace_member/member/presentation/bloc/is_complete_form_cub
 import 'package:marketplace_member/member/presentation/bloc/member/member_bloc.dart';
 import 'package:marketplace_member/member/presentation/bloc/selected_index_cubit.dart';
 
+import 'cart/domain/usecases/select_delivery_address.dart';
+
 final locator = GetIt.instance;
 
 void init() {
@@ -39,7 +41,7 @@ void init() {
   locator.registerFactory(() => ListPaymentMethodBloc(locator()));
   locator.registerFactory(() => CheckoutBloc(locator()));
   locator.registerLazySingleton(() => SelectPaymentMethodBloc());
-  locator.registerFactory(() => DeliveryAddressBloc(locator()));
+  locator.registerFactory(() => DeliveryAddressBloc(locator(), locator()));
 
   // cubit
   locator.registerFactory(() => HandleCheckoutCubit());
@@ -49,6 +51,8 @@ void init() {
       () => GetPaymentMethodUseCase(repository: locator()));
   locator.registerLazySingleton(
       () => GetdeliveryAddressesUseCase(repository: locator()));
+  locator.registerLazySingleton(
+      () => SelectDeliveryAddressesUseCase(repository: locator()));
   locator.registerLazySingleton(
       () => GetCartCheckoutUseCase(repository: locator()));
 
@@ -74,6 +78,6 @@ void init() {
   locator.registerLazySingleton(() => http.Client());
 
   // Member
-  initMember();
+  initMember.init();
   //
 }

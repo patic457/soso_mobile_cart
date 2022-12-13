@@ -10,17 +10,49 @@ import '../../domain/entities/cart_checkout_entity.dart';
 import '../../domain/entities/delivery_address_entity.dart';
 import '../bloc/delivery_address/delivery_address_bloc.dart';
 
-class ShippingAddresstWidget extends StatelessWidget {
-  ShippingAddresstWidget({Key? key, required this.cartData}) : super(key: key);
-
+class ShippingAddresstWidgetv2 extends StatefulWidget {
   final CartCheckoutEntity cartData;
+  ShippingAddresstWidgetv2({super.key, required this.cartData, addressId});
+
+  @override
+  State<ShippingAddresstWidgetv2> createState() => _ShippingAddressState();
+}
+
+class _ShippingAddressState extends State<ShippingAddresstWidgetv2> {
+  @override
+  Widget build(BuildContext context) {
+    final String? memberId = this.widget.cartData.member?.memberId;
+
+    print('MemberId: ' + memberId.toString());
+
+    const String sDefault = 'true';
+    // print('sDefault: ' + addressId.toString());
+
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
+    var addressId = arguments['addressId'].toString();
+    print('AddressId: ' + addressId.toString());
+
+    return Container();
+  }
+}
+
+class ShippingAddresstWidget extends StatelessWidget {
+  final CartCheckoutEntity cartData;
+
+  const ShippingAddresstWidget(
+      {super.key, required this.cartData, selectedAddress});
 
   @override
   Widget build(BuildContext context) {
     final String? memberId = cartData.member?.memberId;
+
+    print('MemberId: ' + memberId.toString());
+
     const String sDefault = 'true';
 
-    return BlocBuilder<DeliveryAddressBloc, DeliveryAddressState>(
+    var blocBuilder = BlocBuilder<DeliveryAddressBloc, DeliveryAddressState>(
         builder: (context, state) {
       if (state is DeliveryAddressInitial) {
         context
@@ -37,23 +69,23 @@ class ShippingAddresstWidget extends StatelessWidget {
               EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
           child: Column(
             children: [
-              Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Shipping Address',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
+              // Row(
+              // ignore: prefer_const_literals_to_create_immutables
+              // children: [
+              // Expanded(
+              //   child: Text(
+              //     'Shipping Address',
+              //     style: TextStyle(
+              //       fontSize: 28,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
+              // ],
+              // ),
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.height * 0.02,
+              // ),
               if (deliveryAddressDatas.isNotEmpty)
                 ExitingAddressCheckoutWidget(
                     addressData: deliveryAddressDatas[0]),
@@ -65,6 +97,32 @@ class ShippingAddresstWidget extends StatelessWidget {
         return NewAddressCheckoutWidget();
       }
     });
+
+    return Padding(
+      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+      child: Column(
+        children: [
+          Row(
+            // ignore: prefer_const_literals_to_create_immutables
+            children: [
+              Expanded(
+                child: Text(
+                  'Shipping Address',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.height * 0.02,
+          // ),
+          blocBuilder,
+        ],
+      ),
+    );
 
     // Padding(
     //   padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
@@ -107,9 +165,10 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    var idd = arguments['sId'];
+    var selectedAddress = arguments['selectedAddress'];
 
-    print('--exiting----${addressData} ' + idd.toString());
+    print('--exiting----${addressData} selectedAddress : ' +
+        selectedAddress.toString());
 
     return Container(
       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
@@ -125,7 +184,7 @@ class ExitingAddressCheckoutWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${addressData?.firstname} ${addressData?.lastname} ${addressData?.id}',
+                '${addressData?.firstname} ${addressData?.lastname}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

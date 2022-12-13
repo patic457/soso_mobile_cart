@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 class DeliveryAddressEntity extends Equatable {
@@ -28,8 +27,8 @@ class DeliveryAddressEntity extends Equatable {
   final DateTime? updatedDate;
   final String? updatedBy;
 
-  DeliveryAddressEntity({
-      this.id,
+  DeliveryAddressEntity(
+      {this.id,
       this.memberId,
       this.sDefault,
       this.firstname,
@@ -53,36 +52,34 @@ class DeliveryAddressEntity extends Equatable {
       this.createdBy,
       this.createdDate,
       this.updatedDate,
-      this.updatedBy
-  });
- 
+      this.updatedBy});
+
   @override
   List<Object?> get props => [
-    id,
-    memberId,
-    sDefault,
-    firstname,
-    lastname,
-    mobileNo,
-    addressNo,
-    moo,
-    mooban,
-    soi,
-    building,
-    room,
-    floor,
-    street,
-    provinceCode,
-    provinceName,
-    districtCode,
-    districtName,
-    subDistrictCode,
-    subDistrictName,
-    postalCode,
-    createdBy,
-    createdDate,
-    updatedDate,
-    updatedBy
-  ];
-
+        id,
+        memberId,
+        sDefault,
+        firstname,
+        lastname,
+        mobileNo,
+        addressNo,
+        moo,
+        mooban,
+        soi,
+        building,
+        room,
+        floor,
+        street,
+        provinceCode,
+        provinceName,
+        districtCode,
+        districtName,
+        subDistrictCode,
+        subDistrictName,
+        postalCode,
+        createdBy,
+        createdDate,
+        updatedDate,
+        updatedBy
+      ];
 }

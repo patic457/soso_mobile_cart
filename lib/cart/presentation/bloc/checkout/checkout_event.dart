@@ -13,3 +13,10 @@ class OnGetCart extends CheckoutEvent {
   @override
   List<Object> get props => [];
 }
+
+class OnSelectCart extends CheckoutEvent {
+  final String memberId;
+  const OnSelectCart(this.memberId);
+  @override
+  List<Object> get props => [];
+}

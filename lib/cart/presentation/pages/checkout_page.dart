@@ -12,6 +12,7 @@ import 'package:soso_mobile_cart/cart/presentation/widgets/step_progressbar_chec
 import 'package:soso_mobile_cart/cart/presentation/widgets/summary_checkout_widget.dart';
 import 'package:ui_style/ui_style.dart';
 
+import '../../domain/entities/delivery_address_entity.dart';
 import '../widgets/shipping_address_widget.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -30,7 +31,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    print('Address Id: ' + arguments['id'].toString());
+    DeliveryAddressEntity selectedAddress = arguments['selectedAddress'];
+
+    print('selectedAddress: ' + selectedAddress.toString());
 
     final checkoutBloc = context.read<CheckoutBloc>();
     return Scaffold(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketplace_member/member/presentation/bloc/bloc.dart';
 import 'package:marketplace_member/member/presentation/bloc/delivery_address_member_bloc/delivery_address_member_bloc.dart';
 
 import 'package:marketplace_member/member/presentation/pages/pages.dart';
@@ -17,7 +18,6 @@ import 'package:soso_mobile_cart/cart/presentation/pages/payment_method_sub_page
 import 'package:soso_mobile_cart/cart/presentation/pages/term_condition_page.dart';
 import 'package:soso_mobile_cart/injection.dart' as di;
 import 'package:bloc/bloc.dart';
-import 'package:preview/screens/preview_screen.dart';
 
 import 'cart/presentation/bloc/delivery_address/delivery_address_bloc.dart';
 
@@ -27,6 +27,22 @@ class RouterGenerator {
     final args = settings.arguments;
 
     switch (settings.name) {
+      case '/marketplace_member/member':
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<MemberBloc>(
+                create: (context) => di.locator<MemberBloc>(),
+              ),
+              BlocProvider<IsCompleteFormCubit>(
+                create: (context) => di.locator<IsCompleteFormCubit>(),
+              )
+            ],
+            child: AddAddressPage(
+              titleText: 'Add new address',
+            ),
+          ),
+        );
       case '/marketplace_member/addresslist':
         return MaterialPageRoute(
           builder: (context) {
@@ -58,6 +74,7 @@ class RouterGenerator {
         );
       case '/checkout':
         return MaterialPageRoute(
+          settings: settings,
           builder: (context) {
             return MultiBlocProvider(
               providers: [
@@ -67,7 +84,8 @@ class RouterGenerator {
                 // ),
                 //
                 BlocProvider<CheckoutBloc>(
-                    create: (context) => di.locator<CheckoutBloc>()),
+                  create: (context) => di.locator<CheckoutBloc>(),
+                ),
                 BlocProvider.value(
                   value: di.locator<SelectPaymentMethodBloc>(),
                 ),
@@ -115,12 +133,6 @@ class RouterGenerator {
         return MaterialPageRoute(
           builder: (context) {
             return const TermConditionPage();
-          },
-        );
-      case '/preview':
-        return MaterialPageRoute(
-          builder: (context) {
-            return const PreviewScreen();
           },
         );
 
