@@ -28,13 +28,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
-
-    // DeliveryAddressEntity selectedAddress = arguments['selectedAddress'];
-
-    // print('selectedAddress: ' + arguments['selectedAddress'].toString());
-
     final checkoutBloc = context.read<CheckoutBloc>();
     return Scaffold(
       appBar: AppBar(
@@ -84,6 +77,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ShippingAddresstWidget(cartData: state.cartResult),
                       //
                       // AddressCheckoutWidget(cartData: state.cartResult),
+                      //
                       //
                       PaymentMethodCheckoutWidget(),
                       SummaryCheckoutWidget(cartData: state.cartResult),

@@ -44,12 +44,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     };
 
     try {
-      var response = await DioHelper(
-              baseUrl: Urls.addressesUrl,
-              headers: Urls.getDeliveryAddressesRequiredHeader)
-          .dioClient(isCache: true)
-          .get('/deliveryaddresses', queryParameters: queryParams);
-
+      var response;
+      if (sDefault == 'true') {
+        response = await DioHelper(
+                baseUrl: Urls.addressesUrl,
+                headers: Urls.getDeliveryAddressesRequiredHeader)
+            .dioClient(isCache: true)
+            .get('/deliveryaddresses', queryParameters: queryParams);
+      } else {
+        response = await DioHelper(
+                baseUrl: Urls.addressesUrl,
+                headers: Urls.getDeliveryAddressesRequiredHeaderv2)
+            .dioClient(isCache: true)
+            .get('/deliveryaddresses/' + sDefault);
+      }
+      //
+      print('response: ' + response.toString());
+      //
       if (response.statusCode == 200) {
         return DeliveryAddressModel.fromJson(response.data);
       }

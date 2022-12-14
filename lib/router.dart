@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketplace_member/member/presentation/bloc/address_checkout_bloc/address_checkout_bloc.dart';
 import 'package:marketplace_member/member/presentation/bloc/bloc.dart';
 import 'package:marketplace_member/member/presentation/bloc/delivery_address_member_bloc/delivery_address_member_bloc.dart';
 
@@ -49,8 +50,11 @@ class RouterGenerator {
             return MultiBlocProvider(
               providers: [
                 BlocProvider<DeliveryAddressMemberBloc>(
-                    create: (context) =>
-                        di.locator<DeliveryAddressMemberBloc>())
+                  create: (context) => di.locator<DeliveryAddressMemberBloc>(),
+                ),
+                BlocProvider<AddressCheckoutBloc>(
+                  create: (context) => di.locator<AddressCheckoutBloc>(),
+                )
               ],
               child: AddressListPage(),
             );
@@ -78,9 +82,12 @@ class RouterGenerator {
           builder: (context) {
             return MultiBlocProvider(
               providers: [
-                //
-                // BlocProvider<DeliveryAddressMemberBloc>(
-                //   create: (context) => di.locator<DeliveryAddressMemberBloc>(),
+                //Member
+                BlocProvider<DeliveryAddressMemberBloc>(
+                  create: (context) => di.locator<DeliveryAddressMemberBloc>(),
+                ),
+                // BlocProvider<AddressCheckoutBloc>(
+                //   create: (context) => di.locator<AddressCheckoutBloc>(),
                 // ),
                 //
                 BlocProvider<CheckoutBloc>(

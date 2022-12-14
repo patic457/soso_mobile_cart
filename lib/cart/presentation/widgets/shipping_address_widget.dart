@@ -14,20 +14,16 @@ class ShippingAddresstWidget extends StatelessWidget {
   final CartCheckoutEntity cartData;
 
   const ShippingAddresstWidget(
-      {super.key, required this.cartData, selectedAddress});
+      {super.key, required this.cartData, selectedAddressId});
 
   @override
   Widget build(BuildContext context) {
-    final String? memberId = cartData.member?.memberId;
-
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
-
-    print('MemberId: ' + memberId.toString());
-
-    print('arguments: ' + arguments.toString());
-
-    const String sDefault = 'true';
+    final String? memberId = cartData.member?.memberId;
+    String selectedAddressId = arguments['id'].toString();
+    String sDefault = 'true';
+    print('arguments: ' + selectedAddressId);
 
     var blocBuilder = BlocBuilder<DeliveryAddressBloc, DeliveryAddressState>(
         builder: (context, state) {
@@ -35,7 +31,6 @@ class ShippingAddresstWidget extends StatelessWidget {
         context
             .read<DeliveryAddressBloc>()
             .add(OnGetDeliveryAddress(memberId!, sDefault));
-
         return SizedBox();
       } else if (state is GetDeliveryAddressLoading ||
           state is GetDeliveryAddressEmpty) {
@@ -98,6 +93,7 @@ class ShippingAddresstWidget extends StatelessWidget {
           //   height: MediaQuery.of(context).size.height * 0.02,
           // ),
           blocBuilder,
+          Text('${selectedAddressId}'),
         ],
       ),
     );
