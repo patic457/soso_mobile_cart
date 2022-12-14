@@ -10,34 +10,6 @@ import '../../domain/entities/cart_checkout_entity.dart';
 import '../../domain/entities/delivery_address_entity.dart';
 import '../bloc/delivery_address/delivery_address_bloc.dart';
 
-class ShippingAddresstWidgetv2 extends StatefulWidget {
-  final CartCheckoutEntity cartData;
-  ShippingAddresstWidgetv2({super.key, required this.cartData, addressId});
-
-  @override
-  State<ShippingAddresstWidgetv2> createState() => _ShippingAddressState();
-}
-
-class _ShippingAddressState extends State<ShippingAddresstWidgetv2> {
-  @override
-  Widget build(BuildContext context) {
-    final String? memberId = this.widget.cartData.member?.memberId;
-
-    print('MemberId: ' + memberId.toString());
-
-    const String sDefault = 'true';
-    // print('sDefault: ' + addressId.toString());
-
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
-
-    var addressId = arguments['addressId'].toString();
-    print('AddressId: ' + addressId.toString());
-
-    return Container();
-  }
-}
-
 class ShippingAddresstWidget extends StatelessWidget {
   final CartCheckoutEntity cartData;
 
@@ -48,7 +20,12 @@ class ShippingAddresstWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final String? memberId = cartData.member?.memberId;
 
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
     print('MemberId: ' + memberId.toString());
+
+    print('arguments: ' + arguments.toString());
 
     const String sDefault = 'true';
 
@@ -58,6 +35,7 @@ class ShippingAddresstWidget extends StatelessWidget {
         context
             .read<DeliveryAddressBloc>()
             .add(OnGetDeliveryAddress(memberId!, sDefault));
+
         return SizedBox();
       } else if (state is GetDeliveryAddressLoading ||
           state is GetDeliveryAddressEmpty) {

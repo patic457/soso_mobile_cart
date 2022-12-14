@@ -365,7 +365,7 @@ packages:
       name: fluttertoast
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.1.1"
+    version: "8.1.2"
   get_it:
     dependency: "direct main"
     description:
@@ -511,7 +511,7 @@ packages:
     description:
       path: "."
       ref: "feature/member"
-      resolved-ref: "5ae82f46e40970664be8de290dc672f250b7124d"
+      resolved-ref: b87f8e46114ca35ce0605f3e2c52705899e5552a
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/marketplace.git"
     source: git
     version: "0.0.1"
@@ -688,7 +688,7 @@ packages:
     description:
       path: "."
       ref: developer
-      resolved-ref: "6f85e3aaf9c974c2a28185eea74b15408a219bef"
+      resolved-ref: d4baba2374eb1d78865fa74b3b122e424696ae12
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/modules/preview_ui.git"
     source: git
     version: "0.0.1"
@@ -898,7 +898,7 @@ packages:
     description:
       path: "."
       ref: "develop-0.1"
-      resolved-ref: "0045c2c166d55a63f39622529d94a9843873c4f7"
+      resolved-ref: b983ce7cc5fb761dfa0bbc1a01d999d4ce299332
       url: "https://git.matador.ais.co.th/mfaf/mobileapp/mfaf_flutter/ui_styles.git"
     source: git
     version: "0.0.1"

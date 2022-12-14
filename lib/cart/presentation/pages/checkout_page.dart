@@ -31,9 +31,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    DeliveryAddressEntity selectedAddress = arguments['selectedAddress'];
+    // DeliveryAddressEntity selectedAddress = arguments['selectedAddress'];
 
-    print('selectedAddress: ' + selectedAddress.toString());
+    // print('selectedAddress: ' + arguments['selectedAddress'].toString());
 
     final checkoutBloc = context.read<CheckoutBloc>();
     return Scaffold(
